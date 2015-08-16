@@ -1,0 +1,57 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+h1, p {
+  width: 90%;
+  text-align: center;
+  color: #FFF;
+  margin: 30px auto 10px;
+}
+
+p {
+  font-family: 'GothamBook';
+  font-size: 1.2em;
+}
+
+div, h1 {
+  font-family: 'GothamMedium';
+  font-size: 3.5em;
+  letter-spacing: 0.05em;
+}
+
+body {
+  background-color: #2C3E50;
+}
+
+#patchpanel {
+  overflow: auto;
+  zoom: 1;
+  margin: 4%;
+  padding: 2%;
+  border-radius: 5px;
+  background-color: #34495E;
+}
+
+.patch-button {
+  cursor: pointer;
+  font-size: 2em;
+  letter-spacing: 0;
+  text-align: center;
+  color: #000;
+  line-height: 200px;
+}
+
+.patch-item {
+  float: left;
+  width: 32%;
+  height: 200px;
+  margin: 0.6667%;
+  border-radius: 5px;
+  background-color: #FFF;
+}

@@ -1,0 +1,62 @@
+{
+  "name": "jquery-boilerplate",
+  "version": "3.5.0",
+  "description": "A jump-start for jQuery plugins development.",
+  "keywords": [
+    "jquery-plugin",
+    "jquery",
+    "boilerplate",
+    "plugins"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jquery-boilerplate/jquery-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jquery-boilerplate/jquery-boilerplate/issues"
+  },
+  "author": {
+    "name": "Zeno Rocha",
+    "email": "zno.rocha@gmail.com",
+    "url": "https://github.com/zenorocha"
+  },
+  "homepage": "http://jqueryboilerplate.com",
+  "contributors": [
+    {
+      "name": "Zeno Rocha",
+      "email": "zno.rocha@gmail.com",
+      "url": "https://github.com/zenorocha"
+    },
+    {
+      "name": "Addy Osmani",
+      "email": "addyosmani@gmail.com",
+      "url": "https://github.com/addyosmani"
+    },
+    {
+      "name": "Helder Santana",
+      "email": "heldr@me.com",
+      "url": "https://github.com/heldr"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
+  "gitHead": "df145b72a09c2a91134764c667d13e6be950c682",
+  "readme": "# jQuery Boilerplate [![Build Status](https://secure.travis-ci.org/jquery-boilerplate/jquery-boilerplate.svg?branch=master)](https://travis-ci.org/jquery-boilerplate/jquery-boilerplate) ![Bower Version](https://badge.fury.io/bo/jquery-boilerplate.svg)\n\n### A jump-start for jQuery plugins development\n\nSo, you've tried your hand at writing jQuery plugins and you're comfortable putting together something that probably works. Awesome! Thing is, you think there might be better ways you could be writing them - you've seen them done a number of different ways in the wild, but aren't really sure what the differences between these patterns are or how to get started with them.\n\nThis project won't seek to provide a perfect solution to every possible pattern, but will attempt to cover a simple template for beginners and above. By using a basic defaults object, simple constructor for assigning the element to work with and extending options with defaults and a lightweight wrapper around the constructor to avoid issues with multiple instantiations.\n\n## Usage\n\n1. Include jQuery:\n\n\t```html\n\t<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js\"></script>\n\t```\n\n2. Include plugin's code:\n\n\t```html\n\t<script src=\"dist/jquery.boilerplate.min.js\"></script>\n\t```\n\n3. Call the plugin:\n\n\t```javascript\n\t$(\"#element\").defaultPluginName({\n\t\tpropertyName: \"a custom value\"\n\t});\n\t```\n\n## Structure\n\nThe basic structure of the project is given in the following way:\n\n```\n├── demo/\n│   └── index.html\n├── dist/\n│   ├── jquery.boilerplate.js\n│   └── jquery.boilerplate.min.js\n├── src/\n│   ├── jquery.boilerplate.coffee\n│   └── jquery.boilerplate.js\n├── .editorconfig\n├── .gitignore\n├── .jshintrc\n├── .travis.yml\n├── boilerplate.jquery.json\n├── Gruntfile.js\n└── package.json\n```\n\n#### [demo/](https://github.com/jquery-boilerplate/boilerplate/tree/master/demo)\n\nContains a simple HTML file to demonstrate your plugin.\n\n#### [dist/](https://github.com/jquery-boilerplate/boilerplate/tree/master/dist)\n\nThis is where the generated files are stored once Grunt runs.\n\n#### [src/](https://github.com/jquery-boilerplate/boilerplate/tree/master/src)\n\nContains the files responsible for your plugin, you can choose between JavaScript or CoffeeScript.\n\n#### [.editorconfig](https://github.com/jquery-boilerplate/boilerplate/tree/master/.editorconfig)\n\nThis file is for unifying the coding style for different editors and IDEs.\n\n> Check [editorconfig.org](http://editorconfig.org) if you haven't heard about this project yet.\n\n#### [.gitignore](https://github.com/jquery-boilerplate/boilerplate/tree/master/.gitignore)\n\nList of files that we don't want Git to track.\n\n> Check this [Git Ignoring Files Guide](https://help.github.com/articles/ignoring-files) for more details.\n\n#### [.jshintrc](https://github.com/jquery-boilerplate/boilerplate/tree/master/.jshintrc)\n\nList of rules used by JSHint to detect errors and potential problems in JavaScript.\n\n> Check [jshint.com](http://jshint.com/about/) if you haven't heard about this project yet.\n\n#### [.travis.yml](https://github.com/jquery-boilerplate/boilerplate/tree/master/.travis.yml)\n\nDefinitions for continous integration using Travis.\n\n> Check [travis-ci.org](http://about.travis-ci.org/) if you haven't heard about this project yet.\n\n#### [boilerplate.jquery.json](https://github.com/jquery-boilerplate/boilerplate/tree/master/boilerplate.jquery.json)\n\nPackage manifest file used to publish plugins in jQuery Plugin Registry.\n\n> Check this [Package Manifest Guide](http://plugins.jquery.com/docs/package-manifest/) for more details.\n\n#### [Gruntfile.js](https://github.com/jquery-boilerplate/boilerplate/tree/master/Gruntfile.js)\n\nContains all automated tasks using Grunt.\n\n> Check [gruntjs.com](http://gruntjs.com) if you haven't heard about this project yet.\n\n#### [package.json](https://github.com/jquery-boilerplate/boilerplate/tree/master/package.json)\n\nSpecify all dependencies loaded via Node.JS.\n\n> Check [NPM](https://npmjs.org/doc/json.html) for more details.\n\n## Guides\n\n#### How did we get here?\n\nHave you got in this repo and still not sure about using this boilerplate?\n\nWell, extending jQuery with plugins and methods is very powerful and can save you and your peers a lot of development time by abstracting your most clever functions into plugins.\n\n[This awesome guide](https://github.com/jquery-boilerplate/boilerplate/wiki/How-did-we-get-here%3F), adapted from [jQuery Plugins/Authoring](http://docs.jquery.com/Plugins/Authoring), will outline the basics, best practices, and common pitfalls to watch out for as you begin writing your plugin.\n\n#### How to publish plugins?\n\nAlso, check our guide on [How to publish a plugin in jQuery Plugin Registry](https://github.com/jquery-boilerplate/boilerplate/wiki/How-to-publish-a-plugin-in-jQuery-Plugin-Registry\n)!\n\n**Note:** The jQuery Plugin Registry is in read-only mode. New plugin releases will not be processed.\njQuery recommends moving to [npm](https://www.npmjs.com/), using [\"jquery-plugin\"](https://www.npmjs.com/browse/keyword/jquery-plugin) as the keyword in your package.json. See [how to publish into npm registry](https://gist.github.com/coolaj86/1318304).\n\n## Team\n\njQuery Boilerplate was made with love by these guys and a bunch of awesome [contributors](https://github.com/jquery-boilerplate/boilerplate/graphs/contributors).\n\n[![Zeno Rocha](http://gravatar.com/avatar/e190023b66e2b8aa73a842b106920c93?s=70)](http://zenorocha.com) | [![Addy Osmani](http://gravatar.com/avatar/96270e4c3e5e9806cf7245475c00b275?s=70)](http://addyosmani.com) | [![Helder Santana](http://gravatar.com/avatar/63fb620ee7d14fc91030d4349d189b3e?s=70)](http://heldr.com)\n--- | --- | --- | --- | --- | --- | ---\n[Zeno Rocha](http://zenorocha.com) | [Addy Osmani](http://addyosmani.com) | [Helder Santana](http://heldr.com)\n\n## Contributing\n\nCheck [CONTRIBUTING.md](https://github.com/jquery-boilerplate/boilerplate/blob/master/CONTRIBUTING.md) for more information.\n\n## History\n\nCheck [Releases](https://github.com/jquery-boilerplate/jquery-boilerplate/releases) for detailed changelog.\n\n## License\n\n[MIT License](http://zenorocha.mit-license.org/) © Zeno Rocha\n",
+  "readmeFilename": "README.md",
+  "_id": "jquery-boilerplate@3.5.0",
+  "_shasum": "cb6ebc1fa41a10858c0d806e2c8850ce2c8cd302",
+  "_from": "git://github.com/jquery-boilerplate/jquery-boilerplate.git",
+  "_resolved": "git://github.com/jquery-boilerplate/jquery-boilerplate.git#df145b72a09c2a91134764c667d13e6be950c682",
+  "_fromGithub": true
+}
