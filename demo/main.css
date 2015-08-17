@@ -1,57 +1,164 @@
 body, html {
   height: 100%;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
-h1, p {
-  width: 90%;
-  text-align: center;
-  color: #FFF;
-  margin: 30px auto 10px;
+pre {
+  white-space: pre-wrap;
 }
 
-p {
+div, p {
   font-family: 'GothamBook';
   font-size: 1.2em;
 }
 
-div, h1 {
-  font-family: 'GothamMedium';
-  font-size: 3.5em;
+.container {
+  width: 90%;
+  margin: 30px auto;
+  text-align: left;
+  color: #FFF;
+}
+
+.container.main p{
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+
+.container h1 {
+  font-size: 2.75em;
+  font-family: 'GothamThin';
   letter-spacing: 0.05em;
 }
 
 body {
-  background-color: #2C3E50;
+  background-color: #22313F;
 }
 
-#patchpanel {
+#patch-container {
   overflow: auto;
   zoom: 1;
+  color: #FFF;
+  text-align: center;
   margin: 4%;
   padding: 2%;
   border-radius: 5px;
-  background-color: #34495E;
+  background-color: #2C3E50;
 }
 
 .patch-button {
   cursor: pointer;
-  font-size: 2em;
+  font-size: 1em;
   letter-spacing: 0;
-  text-align: center;
-  color: #000;
+  color: #FFF;
   line-height: 200px;
+  font-size: 1.5em;
 }
 
 .patch-item {
   float: left;
-  width: 32%;
+  width: 100%;
+  margin: 0 0 2% 0;
   height: 200px;
-  margin: 0.6667%;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #FFF;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 550px) {
+  .patch-item {
+    width: 48%;
+    margin: 1%;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .patch-item {
+    width: 32%;
+    margin: 0.6667%;
+  }
+}
+
+.patch-panel {
+  height: 400px;
+  line-height: 400px;
+  color: #FFF;
+  font-size: 1.5em;
+  float: left;
+  width: 98.6667%;
+  margin: 0.6667%;
+  border-radius: 4px;
+  background-color: #FFF;
+}
+
+.terminal {
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 5px;
+  padding: 15px;
+  font-family: "Source Code Pro";
+  max-width: 700px;
+}
+
+code {
+  line-height: 1.5;
+}
+
+.tag {
+
+}
+
+.title {
+  color: #00B16A;
+}
+
+.attribute {
+  color: #2980b9;
+}
+
+.value {
+
+}
+
+.option {
+  color: #F5AB35;
+}
+
+[data-patch-panel="1"] {
+  background-color: #F5AB35;
+}
+
+[data-patch-panel="2"] {
+  background-color: #00B16A;
+}
+
+[data-patch-panel="3"] {
+  background-color: #E74C3C;
+}
+[data-patch-panel="4"] {
+  background-color: #F5AB35;
+}
+
+[data-patch-panel="5"] {
+  background-color: #00B16A;
+}
+
+[data-patch-panel="6"] {
+  background-color: #E74C3C;
+}
+[data-patch-panel="7"] {
+  background-color: #F5AB35;
+}
+
+[data-patch-panel="8"] {
+  background-color: #00B16A;
+}
+
+[data-patch-panel="9"] {
+  background-color: #E74C3C;
 }

@@ -1,18 +1,17 @@
 {
-	"name": "jquery-boilerplate",
-	"version": "3.5.0",
-	"homepage": "http://jqueryboilerplate.com",
+	"name": "patch-panel",
+	"version": "1.0",
+	"homepage": "http://patchpanel.alecortega.com",
 	"authors": [
-		"Zeno Rocha <hi@zenorocha.com>"
+		"Alec Ortega <alecortega@live.com>"
 	],
-	"description": "A jump-start for jQuery plugins development.",
-	"main": "src/jquery.boilerplate.js",
+	"description": "A responsive panel system for grid layouts",
+	"main": "src/patchpanel.js",
 	"keywords": [
-		"jquery",
-		"plugin",
-		"boilerplate",
-		"jquery-plugin",
-		"jquery-boilerplate"
+		"responsive",
+		"grid",
+		"panel",
+		"jquery"
 	],
 	"license": "MIT"
 }

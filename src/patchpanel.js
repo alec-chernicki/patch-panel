@@ -17,8 +17,8 @@
   // Create the defaults once
   var pluginName = "patchpanel",
     defaults = {
-      itemSelector: ".patch-item",
       buttonSelector: ".patch-button",
+      itemSelector: ".patch-item",
       panelSelector: ".patch-panel"
     };
 
@@ -35,7 +35,6 @@
 
     // Object collections to iterate over
     this.$itemCollection = $(this.element).children(this._defaults.itemSelector);
-    this.$panelCollection = $(this).children(this._defaults.panelSelector);
 
     this.init();
   }
@@ -43,13 +42,12 @@
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
     init: function() {
-      this.bindPatchButton();
-      this.isPanelOpen();
-      this.appendPanel();
+      this.hideAllPanels();
+      this.bindPatchButton(this.isPanelOpen, this.appendPanel, this.element, this.$itemCollection, this.togglePanel);
+      this.bindCloseOnResize(this.togglePanel);
     },
 
-    bindPatchButton: function () {
-
+    bindPatchButton: function (isPanelOpen, appendPanel, container, itemCollection, togglePanel) {
       // Bind event handlers
       $(defaults.buttonSelector).on("click", function() {
         var $el = this;
@@ -57,27 +55,31 @@
 
         // IF: Button clicked corresponds to a panel and no panels are already open, open panel
         if (!isPanelOpen()) {
-          $el.appendPanel($el, $panel);
-          $el.openPanel($panel);
+          appendPanel($el, $panel, container, itemCollection);
+          togglePanel($panel);
         }
 
         // ELSE IF: Button clicked corresponds to a panel that is already open
-        else if (isPanelOpen().attr("id") === $panel.attr("id")) {
-          closePanel($panel);
+        else if (isPanelOpen().attr("data-patch-panel") === $panel.attr("data-patch-panel")) {
+          togglePanel($panel);
         }
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
-        else if (isPanelOpen() && isPanelOpen().attr("id") !== $panel.attr("id")) {
-          appendPanel($el, $panel);
-          $(isPanelOpen()).removeClass("open").slideToggle(300, function() {
-            openPanel($panel);
+        else if (isPanelOpen().attr("data-patch-panel") !== $panel.attr("data-patch-panel")) {
+          appendPanel($el, $panel, container, itemCollection);
+          $(isPanelOpen()).toggleClass("open").slideToggle(300, function() {
+            togglePanel($panel);
           });
         }
       });
     },
 
+    bindCloseOnResize: function (togglePanel) {
+      $(window).one("resize", togglePanel());
+    },
+
     isPanelOpen: function() {
-      var $openPanel = $(".patch-panel.open");
+      var $openPanel = $(defaults.panelSelector + ".open");
 
       // Returns panel object if a panel is open
       if ($openPanel.length > 0) {
@@ -89,7 +91,12 @@
       }
     },
 
-    appendPanel: function (button, panel, container) {
+    hideAllPanels: function () {
+      $(defaults.panelSelector).hide();
+    },
+
+    appendPanel: function (button, panel, container, itemCollection) {
+
       // Stores the closest portfolio item object
       var $item = $(button).closest(defaults.itemSelector);
 
@@ -97,18 +104,14 @@
       var itemsInRow = Math.round($(container).width() / $item.width());
 
       // Finds the row by dividing the index of the item by the number of items in a row and rounding up
-      var rowOfItem = Math.ceil(($itemArray.index($item) + 1) / itemsInRow);
+      var rowOfItem = Math.ceil((itemCollection.index($item) + 1) / itemsInRow);
 
       // Find the project correct item to append to within the item array and append the panel
-      $($itemArray[itemsInRow * rowOfItem - 1]).append().after(panel);
+      $(itemCollection[itemsInRow * rowOfItem - 1]).append().after(panel);
     },
 
-    openPanel: function(panel) {
-      panel.addClass("open").slideToggle(300);
-    },
-
-    closePanel: function(panel) {
-      panel.removeClass("open").slideToggle(300);
+    togglePanel: function(panel) {
+      panel.toggleClass("open").slideToggle(300);
     }
   });
 

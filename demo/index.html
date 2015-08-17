@@ -2,25 +2,87 @@
 <html>
 	<head>
 		<title>Patch Panel</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="../src/patchpanel.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="./main.css" type="text/css">
 	</head>
 	<body>
-		<h1>PATCH PANEL</h1>
-		<p>A responsive grid + panel jQuery plugin</p>
-		<div id="patch-container">
-			<div class="patch-item patch-button" data-patch-panel="1">1</div>
-			<div class="patch-panel" data-patch-panel="1"></div>
-			<div class="patch-item patch-button">2</div>
-			<div class="patch-item patch-button">3</div>
-			<div class="patch-item patch-button">4</div>
-			<div class="patch-item patch-button">5</div>
-			<div class="patch-item patch-button">6</div>
-			<div class="patch-item patch-button">7</div>
-			<div class="patch-item patch-button">8</div>
-			<div class="patch-item patch-button">9</div>
+		<div class="container">
+			<h1>Patch Panel</h1>
+			<p>A responsive panel plugin for grid layouts</p>
 		</div>
+		<div id="patch-container">
+			<div class="patch-item patch-button" data-patch-panel="1">One</div>
+			<div class="patch-panel" data-patch-panel="1">One</div>
+			<div class="patch-item patch-button" data-patch-panel="2">Two</div>
+			<div class="patch-panel" data-patch-panel="2">Two</div>
+			<div class="patch-item patch-button" data-patch-panel="3">Three</div>
+			<div class="patch-panel" data-patch-panel="3">Three</div>
+			<div class="patch-item patch-button" data-patch-panel="4">Four</div>
+			<div class="patch-panel" data-patch-panel="4">Four</div>
+			<div class="patch-item patch-button" data-patch-panel="5">Five</div>
+			<div class="patch-panel" data-patch-panel="5">Five</div>
+			<div class="patch-item patch-button" data-patch-panel="6">Six</div>
+			<div class="patch-panel" data-patch-panel="6">Six</div>
+			<div class="patch-item patch-button" data-patch-panel="7">Seven</div>
+			<div class="patch-panel" data-patch-panel="7">Seven</div>
+			<div class="patch-item patch-button" data-patch-panel="8">Eight</div>
+			<div class="patch-panel" data-patch-panel="8">Eight</div>
+			<div class="patch-item patch-button" data-patch-panel="9">Nine</div>
+			<div class="patch-panel" data-patch-panel="9">Nine</div>
+		</div>
+		<div class="container main">
+			<h1>How To Install:</h1>
+			<a>View on GitHub</a>
+			<a>Download</a>
+			<p>Install from Bower</p>
+			<div class="terminal">$ bower install patch-panel</div>
+			<h1>How to Use:</h1>
+			<h2>HTML</h2>
+			<p>First, include the path to the file, remember to include jQuery beforehand.</p>
+      <pre class="terminal"><code><span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/jQuery.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span>
+<span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/patchpanel.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span></code></pre>
+
+      <p>Patch Panel works on the parent container of a group of items and panels.</p>
+
+      <pre class="terminal"><code><span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-container"</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item"</span>>...<<span class="title">div</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span>>...<<span class="title">div</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item"</span>>...<<span class="title">div</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span>>...<<span class="title">div</span>></span>
+    ...
+<span class="tag"><<span class="title">/div</span>></span></code></pre>
+
+      <p>There are four different components that make up Patch Panel's magic.</p>
+      <p><span class="option">.patch-item</span> Place this class on all child items that you want to be shown.</p>
+      <p><span class="option">.patch-panel</span> Place this class on all child items that are panels.</p>
+      <p><span class="option">.patch-button</span> Place this class on that element you want to use to trigger.</p>
+      <p><span class="option">data-patch-panel</span> Place this data attribute along with a unique identifier on both your <span class="option">patch-button</span> and your <span class="option">patch-panel</span>, this is what ties the two together.</p>
+
+      <h2>CSS</h2>
+        <p>All sizing of items is handled by your CSS</p>
+
+        <pre class="terminal"><code><span class="tag"><span class="title">.patch-item </span>{
+  <span class="attribute">height:</span><span class="value"> 200px;</span>
+  <span class="attribute">width:</span><span class="value"> 100%;</span>
+}</span>
+
+<span class="tag">@media only screen and (min-width : 992px) {
+  <span class="title">.patch-item </span>{
+    <span class="attribute">width:</span><span class="value"> 50%;</span>
+  }</span>
+}</code></pre>
+
+      <h2>jQuery Initialization</h2>
+      <pre class="terminal"><code><span class="tag">$(<span class="title">'.patch-container'</span>).patchpanel({
+  <span class="attribute">buttonSelector:</span><span class="value"> '.grid-button'</span>,
+  <span class="attribute">itemSelector:</span><span class="value"> '.grid-item'</span>,
+  <span class="attribute">panelSelector:</span><span class="value"> '.grid-panel'</span>
+});</span></code></pre>
+
+
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../src/patchpanel.js"></script>
 		<script>
 			$(function() {
 				$("#patch-container").patchpanel();
