@@ -12,6 +12,27 @@ pre {
   white-space: pre-wrap;
 }
 
+a {
+  text-decoration: none;
+  color: #FFF;
+  display: block;
+  padding: 20px 25px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.4);
+  transition: 0.2s;
+  margin: 0 auto 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+a:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+i {
+  margin-right: 10px;
+}
+
 div, p {
   font-family: 'GothamBook';
   font-size: 1.2em;
@@ -20,13 +41,39 @@ div, p {
 .container {
   width: 90%;
   margin: 30px auto;
-  text-align: left;
+  text-align: center;
   color: #FFF;
 }
 
 .container.main p{
   font-size: 1em;
   line-height: 1.5em;
+}
+
+.container.main {
+  background-color: #2C3E50;
+  padding: 2%;
+  border-radius: 5px;
+  width: 92%;
+  max-width: 900px;
+  margin: 0 auto 4%;
+}
+
+.container.main.install {
+  text-align: center;
+}
+
+.container.main.install a:nth-child(1) {
+  background-color: #00B16A;
+}
+
+.container.main.install a:nth-child(2) {
+  background-color: #F5AB35;
+}
+
+
+.container.main.install .terminal{
+  text-align: center;
 }
 
 
@@ -83,6 +130,43 @@ body {
     width: 32%;
     margin: 0.6667%;
   }
+
+  .wide {
+    width: 48.6666%;
+    margin: 0.6667%;
+  }
+
+  .thin {
+    width: 23.6666%;
+  }
+}
+
+.components {
+  width: 95%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.4);
+  padding: 1%;
+  margin-bottom: 3%;
+  border-radius: 5px;
+  position: relative;
+  font-size: 1.2rem;
+  border: solid 2px #F5AB35;
+}
+
+.components:after {
+  content: "1";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: #000;
+  background-color: #FFF;
+  top: 0;
+  left: 0;
+  line-height: 30px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .patch-panel {
@@ -102,7 +186,10 @@ body {
   border-radius: 5px;
   padding: 15px;
   font-family: "Source Code Pro";
-  max-width: 700px;
+  max-width: 600px;
+  font-size: 1em;
+  text-align: left;
+  margin: 0 auto;
 }
 
 code {

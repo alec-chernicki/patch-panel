@@ -3,7 +3,8 @@
 	<head>
 		<title>Patch Panel</title>
 		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="./main.css" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./main.css" type="text/css">
 	</head>
 	<body>
 		<div class="container">
@@ -17,25 +18,26 @@
 			<div class="patch-panel" data-patch-panel="2">Two</div>
 			<div class="patch-item patch-button" data-patch-panel="3">Three</div>
 			<div class="patch-panel" data-patch-panel="3">Three</div>
-			<div class="patch-item patch-button" data-patch-panel="4">Four</div>
+			<div class="patch-item patch-button wide" data-patch-panel="4">Four</div>
 			<div class="patch-panel" data-patch-panel="4">Four</div>
-			<div class="patch-item patch-button" data-patch-panel="5">Five</div>
+			<div class="patch-item patch-button wide" data-patch-panel="5">Five</div>
 			<div class="patch-panel" data-patch-panel="5">Five</div>
-			<div class="patch-item patch-button" data-patch-panel="6">Six</div>
+			<div class="patch-item patch-button thin" data-patch-panel="6">Six</div>
 			<div class="patch-panel" data-patch-panel="6">Six</div>
-			<div class="patch-item patch-button" data-patch-panel="7">Seven</div>
+			<div class="patch-item patch-button thin" data-patch-panel="7">Seven</div>
 			<div class="patch-panel" data-patch-panel="7">Seven</div>
-			<div class="patch-item patch-button" data-patch-panel="8">Eight</div>
+			<div class="patch-item patch-button thin" data-patch-panel="8">Eight</div>
 			<div class="patch-panel" data-patch-panel="8">Eight</div>
-			<div class="patch-item patch-button" data-patch-panel="9">Nine</div>
+			<div class="patch-item patch-button thin" data-patch-panel="9">Nine</div>
 			<div class="patch-panel" data-patch-panel="9">Nine</div>
 		</div>
-		<div class="container main">
-			<h1>How To Install:</h1>
-			<a>View on GitHub</a>
-			<a>Download</a>
+		<div class="container main install">
+			<a href="https://github.com/alecortega/patch-panel"><i class="fa fa-download"></i>Download</a>
+      <a href="https://github.com/alecortega/patch-panel"><i class="fa fa-github"></i>View on GitHub</a>
 			<p>Install from Bower</p>
 			<div class="terminal">$ bower install patch-panel</div>
+    </div>
+    <div class="container main">
 			<h1>How to Use:</h1>
 			<h2>HTML</h2>
 			<p>First, include the path to the file, remember to include jQuery beforehand.</p>
@@ -52,14 +54,26 @@
     ...
 <span class="tag"><<span class="title">/div</span>></span></code></pre>
 
-      <p>There are four different components that make up Patch Panel's magic.</p>
-      <p><span class="option">.patch-item</span> Place this class on all child items that you want to be shown.</p>
-      <p><span class="option">.patch-panel</span> Place this class on all child items that are panels.</p>
-      <p><span class="option">.patch-button</span> Place this class on that element you want to use to trigger.</p>
-      <p><span class="option">data-patch-panel</span> Place this data attribute along with a unique identifier on both your <span class="option">patch-button</span> and your <span class="option">patch-panel</span>, this is what ties the two together.</p>
+      <p>There are four different components that make up Patch Panel.</p>
+      <div class="components">
+        <p class="option">.patch-item</p>
+        <p>Place this class on all child items that make up the grid, these are the elements that will be shown.</p>
+      </div>
+      <div class="components">
+        <p class="option">.patch-panel</p>
+        <p>Place this class on all child items that are panels, all panels will be hidden on initialization.</p>
+      </div>
+      <div class="components">
+        <p class="option">.patch-button</p>
+        <p>Place this class on that element you want to use to trigger.</p>
+      </div>
+      <div class="components">
+        <p class="option">data-patch-panel</p>
+        <p>Place this data attribute along with a unique identifier on both your <span class="option">patch-button</span> and your <span class="option">patch-panel</span>, this is what ties the two together.</p>
+      </div>
 
       <h2>CSS</h2>
-        <p>All sizing of items is handled by your CSS</p>
+        <p>All sizing of items is handled by your CSS, Patch Panel will automatically detect how many items there are in a row no matter what the </p>
 
         <pre class="terminal"><code><span class="tag"><span class="title">.patch-item </span>{
   <span class="attribute">height:</span><span class="value"> 200px;</span>

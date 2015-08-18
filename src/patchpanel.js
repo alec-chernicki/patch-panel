@@ -5,15 +5,6 @@
 
   "use strict";
 
-  // undefined is used here as the undefined global variable in ECMAScript 3 is
-  // mutable (ie. it can be changed by someone else). undefined isn"t really being
-  // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-  // can no longer be modified.
-
-  // window and document are passed through as local variable rather than global
-  // as this (slightly) quickens the resolution process and can be more efficiently
-  // minified (especially when both are regularly referenced in your plugin).
-
   // Create the defaults once
   var pluginName = "patchpanel",
     defaults = {
@@ -44,7 +35,7 @@
     init: function() {
       this.hideAllPanels();
       this.bindPatchButton(this.isPanelOpen, this.appendPanel, this.element, this.$itemCollection, this.togglePanel);
-      this.bindCloseOnResize(this.togglePanel);
+      this.bindCloseOnResize(this.togglePanel, this.isPanelOpen);
     },
 
     bindPatchButton: function (isPanelOpen, appendPanel, container, itemCollection, togglePanel) {
@@ -74,21 +65,17 @@
       });
     },
 
-    bindCloseOnResize: function (togglePanel) {
-      $(window).one("resize", togglePanel());
+    bindCloseOnResize: function (togglePanel, isPanelOpen) {
+      $(window).on("resize", function () {
+        if(isPanelOpen()) { togglePanel(isPanelOpen()); }
+      });
     },
 
     isPanelOpen: function() {
       var $openPanel = $(defaults.panelSelector + ".open");
 
-      // Returns panel object if a panel is open
-      if ($openPanel.length > 0) {
-        return $openPanel;
-      }
-      // Returns false if no panels are open
-      else {
-        return false;
-      }
+      // Returns panel object if a panel is open else returns false
+      return ($openPanel.length > 0) ? ($openPanel) : (false);
     },
 
     hideAllPanels: function () {
@@ -100,14 +87,26 @@
       // Stores the closest portfolio item object
       var $item = $(button).closest(defaults.itemSelector);
 
+      var itemIndex = $(itemCollection).index($item);
+
       // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.round($(container).width() / $item.width());
+      var itemsInRow = Math.floor($(container).width() / $item.width());
 
       // Finds the row by dividing the index of the item by the number of items in a row and rounding up
-      var rowOfItem = Math.ceil((itemCollection.index($item) + 1) / itemsInRow);
+      // var rowOfItem = Math.ceil((itemCollection.index($item) + 1) / itemsInRow);
+
+      // var itemContext = (itemCollection.length - 1) / (itemsInRow - 1);
+
+      var itemPosition = $item.position();
+
+      var itemOffset = Math.floor(itemPosition.left / $item.width()) + 1;
+      console.log(itemsInRow - itemOffset)
+
+      $(itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
+
 
       // Find the project correct item to append to within the item array and append the panel
-      $(itemCollection[itemsInRow * rowOfItem - 1]).append().after(panel);
+      // $(itemCollection[itemsInRow * rowOfItem - 1]).append().after(panel);
     },
 
     togglePanel: function(panel) {

@@ -7,3 +7,6 @@ test/coverage
 .DS_Store
 ._*
 .Trashes
+
+#Other
+demo
