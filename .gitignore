@@ -8,5 +8,8 @@ test/coverage
 ._*
 .Trashes
 
-#Other
-demo
+#Others
+demo/*
+dist/*
+*/demo
+*/dist

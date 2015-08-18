@@ -3,6 +3,7 @@
 	<head>
 		<title>Patch Panel</title>
 		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" type="text/css">
 	</head>
@@ -31,6 +32,9 @@
 			<div class="patch-item patch-button thin" data-patch-panel="9">Nine</div>
 			<div class="patch-panel" data-patch-panel="9">Nine</div>
 		</div>
+    <div class="container main">
+      <p>Patch Panel displays the appropriate panel for an item beneath the row it was clicked, regardless of items per row, width of items, or number of rows.</p>
+    </div>
 		<div class="container main install">
 			<a href="https://github.com/alecortega/patch-panel"><i class="fa fa-download"></i>Download</a>
       <a href="https://github.com/alecortega/patch-panel"><i class="fa fa-github"></i>View on GitHub</a>
@@ -38,7 +42,6 @@
 			<div class="terminal">$ bower install patch-panel</div>
     </div>
     <div class="container main">
-			<h1>How to Use:</h1>
 			<h2>HTML</h2>
 			<p>First, include the path to the file, remember to include jQuery beforehand.</p>
       <pre class="terminal"><code><span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/jQuery.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span>
@@ -55,23 +58,24 @@
 <span class="tag"><<span class="title">/div</span>></span></code></pre>
 
       <p>There are four different components that make up Patch Panel.</p>
-      <div class="components">
+      <div class="components component-one">
         <p class="option">.patch-item</p>
         <p>Place this class on all child items that make up the grid, these are the elements that will be shown.</p>
       </div>
-      <div class="components">
+      <div class="components component-two">
         <p class="option">.patch-panel</p>
         <p>Place this class on all child items that are panels, all panels will be hidden on initialization.</p>
       </div>
-      <div class="components">
+      <div class="components component-three">
         <p class="option">.patch-button</p>
         <p>Place this class on that element you want to use to trigger.</p>
       </div>
-      <div class="components">
+      <div class="components component-four">
         <p class="option">data-patch-panel</p>
         <p>Place this data attribute along with a unique identifier on both your <span class="option">patch-button</span> and your <span class="option">patch-panel</span>, this is what ties the two together.</p>
       </div>
-
+      </div>
+      <div class="container main">
       <h2>CSS</h2>
         <p>All sizing of items is handled by your CSS, Patch Panel will automatically detect how many items there are in a row no matter what the </p>
 
@@ -85,16 +89,18 @@
     <span class="attribute">width:</span><span class="value"> 50%;</span>
   }</span>
 }</code></pre>
-
+      </div>
+      <div class="container main">
       <h2>jQuery Initialization</h2>
       <pre class="terminal"><code><span class="tag">$(<span class="title">'.patch-container'</span>).patchpanel({
   <span class="attribute">buttonSelector:</span><span class="value"> '.grid-button'</span>,
   <span class="attribute">itemSelector:</span><span class="value"> '.grid-item'</span>,
   <span class="attribute">panelSelector:</span><span class="value"> '.grid-panel'</span>
 });</span></code></pre>
-
-
 		</div>
+    <div class="container main">
+    Made with <span class="heart"></span> by <a class="personal-link" href="http://alecortega.com">Alec Ortega</a>
+    </div>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="../src/patchpanel.js"></script>
 		<script>

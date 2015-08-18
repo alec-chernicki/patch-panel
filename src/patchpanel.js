@@ -89,24 +89,18 @@
 
       var itemIndex = $(itemCollection).index($item);
 
-      // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.floor($(container).width() / $item.width());
-
-      // Finds the row by dividing the index of the item by the number of items in a row and rounding up
-      // var rowOfItem = Math.ceil((itemCollection.index($item) + 1) / itemsInRow);
-
-      // var itemContext = (itemCollection.length - 1) / (itemsInRow - 1);
-
       var itemPosition = $item.position();
 
+      // Calculates number of items in row by dividing container width by width of item
+      var itemsInRow = Math.round($(container).width() / $item.width());
+
       var itemOffset = Math.floor(itemPosition.left / $item.width()) + 1;
-      console.log(itemsInRow - itemOffset)
 
-      $(itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
-
+      console.log(itemOffset);
+      console.log(itemsInRow);
 
       // Find the project correct item to append to within the item array and append the panel
-      // $(itemCollection[itemsInRow * rowOfItem - 1]).append().after(panel);
+      $(itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
     },
 
     togglePanel: function(panel) {

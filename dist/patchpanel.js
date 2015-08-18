@@ -1,9 +1,9 @@
 /*
- *  jquery-boilerplate - v3.5.0
- *  A jump-start for jQuery plugins development.
- *  http://jqueryboilerplate.com
+ *  patch-panel - v1.0
+ *  A responsive panel plugin for grid layouts.
+ *  http://alecortega.com
  *
- *  Made by Zeno Rocha
+ *  Made by Alec Ortega
  *  Under MIT License
  */
 // the semi-colon before function invocation is a safety net against concatenated
@@ -13,20 +13,11 @@
 
   "use strict";
 
-  // undefined is used here as the undefined global variable in ECMAScript 3 is
-  // mutable (ie. it can be changed by someone else). undefined isn"t really being
-  // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-  // can no longer be modified.
-
-  // window and document are passed through as local variable rather than global
-  // as this (slightly) quickens the resolution process and can be more efficiently
-  // minified (especially when both are regularly referenced in your plugin).
-
   // Create the defaults once
   var pluginName = "patchpanel",
     defaults = {
-      itemSelector: ".patch-item",
       buttonSelector: ".patch-button",
+      itemSelector: ".patch-item",
       panelSelector: ".patch-panel"
     };
 
@@ -43,7 +34,6 @@
 
     // Object collections to iterate over
     this.$itemCollection = $(this.element).children(this._defaults.itemSelector);
-    this.$panelCollection = $(this).children(this._defaults.panelSelector);
 
     this.init();
   }
@@ -51,13 +41,12 @@
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
     init: function() {
-      this.bindPatchButton();
-      this.isPanelOpen();
-      this.appendPanel();
+      this.hideAllPanels();
+      this.bindPatchButton(this.isPanelOpen, this.appendPanel, this.element, this.$itemCollection, this.togglePanel);
+      this.bindCloseOnResize(this.togglePanel, this.isPanelOpen);
     },
 
-    bindPatchButton: function () {
-
+    bindPatchButton: function (isPanelOpen, appendPanel, container, itemCollection, togglePanel) {
       // Bind event handlers
       $(defaults.buttonSelector).on("click", function() {
         var $el = this;
@@ -65,58 +54,65 @@
 
         // IF: Button clicked corresponds to a panel and no panels are already open, open panel
         if (!isPanelOpen()) {
-          $el.appendPanel($el, $panel);
-          $el.openPanel($panel);
+          appendPanel($el, $panel, container, itemCollection);
+          togglePanel($panel);
         }
 
         // ELSE IF: Button clicked corresponds to a panel that is already open
-        else if (isPanelOpen().attr("id") === $panel.attr("id")) {
-          closePanel($panel);
+        else if (isPanelOpen().attr("data-patch-panel") === $panel.attr("data-patch-panel")) {
+          togglePanel($panel);
         }
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
-        else if (isPanelOpen() && isPanelOpen().attr("id") !== $panel.attr("id")) {
-          appendPanel($el, $panel);
-          $(isPanelOpen()).removeClass("open").slideToggle(300, function() {
-            openPanel($panel);
+        else if (isPanelOpen().attr("data-patch-panel") !== $panel.attr("data-patch-panel")) {
+          appendPanel($el, $panel, container, itemCollection);
+          $(isPanelOpen()).toggleClass("open").slideToggle(300, function() {
+            togglePanel($panel);
           });
         }
       });
     },
 
-    isPanelOpen: function() {
-      var $openPanel = $(".patch-panel.open");
-
-      // Returns panel object if a panel is open
-      if ($openPanel.length > 0) {
-        return $openPanel;
-      }
-      // Returns false if no panels are open
-      else {
-        return false;
-      }
+    bindCloseOnResize: function (togglePanel, isPanelOpen) {
+      $(window).on("resize", function () {
+        if(isPanelOpen()) { togglePanel(isPanelOpen()); }
+      });
     },
 
-    appendPanel: function (button, panel, container) {
+    isPanelOpen: function() {
+      var $openPanel = $(defaults.panelSelector + ".open");
+
+      // Returns panel object if a panel is open else returns false
+      return ($openPanel.length > 0) ? ($openPanel) : (false);
+    },
+
+    hideAllPanels: function () {
+      $(defaults.panelSelector).hide();
+    },
+
+    appendPanel: function (button, panel, container, itemCollection) {
+
       // Stores the closest portfolio item object
       var $item = $(button).closest(defaults.itemSelector);
+
+      var itemIndex = $(itemCollection).index($item);
+
+      var itemPosition = $item.position();
 
       // Calculates number of items in row by dividing container width by width of item
       var itemsInRow = Math.round($(container).width() / $item.width());
 
-      // Finds the row by dividing the index of the item by the number of items in a row and rounding up
-      var rowOfItem = Math.ceil(($itemArray.index($item) + 1) / itemsInRow);
+      var itemOffset = Math.floor(itemPosition.left / $item.width()) + 1;
+
+      console.log(itemOffset);
+      console.log(itemsInRow);
 
       // Find the project correct item to append to within the item array and append the panel
-      $($itemArray[itemsInRow * rowOfItem - 1]).append().after(panel);
+      $(itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
     },
 
-    openPanel: function(panel) {
-      panel.addClass("open").slideToggle(300);
-    },
-
-    closePanel: function(panel) {
-      panel.removeClass("open").slideToggle(300);
+    togglePanel: function(panel) {
+      panel.toggleClass("open").slideToggle(300);
     }
   });
 
