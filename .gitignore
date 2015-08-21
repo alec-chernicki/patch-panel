@@ -7,9 +7,3 @@ test/coverage
 .DS_Store
 ._*
 .Trashes
-
-#Others
-demo/*
-dist/*
-*/demo
-*/dist

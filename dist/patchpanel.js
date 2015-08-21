@@ -18,7 +18,8 @@
     defaults = {
       buttonSelector: ".patch-button",
       itemSelector: ".patch-item",
-      panelSelector: ".patch-panel"
+      panelSelector: ".patch-panel",
+      toggleSpeed: 300
     };
 
   // The actual plugin constructor
@@ -32,87 +33,110 @@
     this._defaults = defaults;
     this._name = pluginName;
 
-    // Object collections to iterate over
-    this.$itemCollection = $(this.element).children(this._defaults.itemSelector);
-
     this.init();
   }
 
   // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
     init: function() {
+      this.buildCache();
+      this.bindEvents();
       this.hideAllPanels();
-      this.bindPatchButton(this.isPanelOpen, this.appendPanel, this.element, this.$itemCollection, this.togglePanel);
-      this.bindCloseOnResize(this.togglePanel, this.isPanelOpen);
     },
 
-    bindPatchButton: function (isPanelOpen, appendPanel, container, itemCollection, togglePanel) {
-      // Bind event handlers
-      $(defaults.buttonSelector).on("click", function() {
-        var $el = this;
-        var $panel = $(defaults.panelSelector + "[data-patch-panel=" + $el.getAttribute("data-patch-panel") + "]");
+    buildCache: function () {
+      this.$window = $(window);
+      this.$container = $(this.element);
+      this.$itemCollection = $(this.element).children(this.settings.itemSelector);
+      this.$patchButton = $(this.settings.buttonSelector);
+
+      this.itemSelector = this.settings.itemSelector;
+      this.panelSelector = this.settings.panelSelector;
+    },
+
+    bindEvents: function () {
+      var plugin = this;
+
+      plugin.$patchButton.on("click", function (e) {
+        // Prevent default in case the button is an anchor tag
+        e.preventDefault();
+
+        var $el = $(this);
+        var $openPanel = plugin.isPanelOpen();
+        var $hiddenPanel = $(plugin.panelSelector + "[data-patch-panel=" + $el.attr("data-patch-panel") + "]");
 
         // IF: Button clicked corresponds to a panel and no panels are already open, open panel
-        if (!isPanelOpen()) {
-          appendPanel($el, $panel, container, itemCollection);
-          togglePanel($panel);
+        if (!$openPanel) {
+          plugin.appendPanel($el, $hiddenPanel);
+          plugin.togglePanel($hiddenPanel);
         }
 
         // ELSE IF: Button clicked corresponds to a panel that is already open
-        else if (isPanelOpen().attr("data-patch-panel") === $panel.attr("data-patch-panel")) {
-          togglePanel($panel);
+        else if ($openPanel.attr("data-patch-panel") === $hiddenPanel.attr("data-patch-panel")) {
+          plugin.togglePanel($openPanel);
         }
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
-        else if (isPanelOpen().attr("data-patch-panel") !== $panel.attr("data-patch-panel")) {
-          appendPanel($el, $panel, container, itemCollection);
-          $(isPanelOpen()).toggleClass("open").slideToggle(300, function() {
-            togglePanel($panel);
-          });
+        else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
+          plugin.appendPanel($el, $hiddenPanel);
+          plugin.togglePanel($openPanel);
+          plugin.togglePanel($hiddenPanel);
         }
       });
-    },
 
-    bindCloseOnResize: function (togglePanel, isPanelOpen) {
-      $(window).on("resize", function () {
-        if(isPanelOpen()) { togglePanel(isPanelOpen()); }
+      plugin.$window.on("resize", function () {
+        var $openPanel = plugin.isPanelOpen();
+        if($openPanel) { plugin.debounce($openPanel.toggleClass("open").hide(), 250); }
       });
     },
 
-    isPanelOpen: function() {
-      var $openPanel = $(defaults.panelSelector + ".open");
+    appendPanel: function ($button, panel) {
+      var plugin = this;
+
+      // Stores the current portfolio item object
+      var $item = $button.closest(plugin.itemSelector);
+
+      // Stores the index of the current item in relation to the item collection
+      var itemIndex = $(plugin.$itemCollection).index($item);
+
+      // Calculates number of items in row by dividing container width by width of item
+      var itemsInRow = Math.round(plugin.$container.width() / $item.width());
+
+      // Calculates the number of items that follow the clicked one within the row
+      var itemOffset = Math.floor($item.position().left / $item.width()) + 1;
+
+      // Appends the panel at the items current index plus the offset
+      $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
+    },
+
+    debounce: function(func, wait, immediate) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    },
+
+    isPanelOpen: function () {
+      var $openPanel = $(this.panelSelector + ".open");
 
       // Returns panel object if a panel is open else returns false
-      return ($openPanel.length > 0) ? ($openPanel) : (false);
+      return $openPanel.length > 0 ? $openPanel : false;
     },
 
     hideAllPanels: function () {
-      $(defaults.panelSelector).hide();
+      $(this.panelSelector).hide();
     },
 
-    appendPanel: function (button, panel, container, itemCollection) {
-
-      // Stores the closest portfolio item object
-      var $item = $(button).closest(defaults.itemSelector);
-
-      var itemIndex = $(itemCollection).index($item);
-
-      var itemPosition = $item.position();
-
-      // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.round($(container).width() / $item.width());
-
-      var itemOffset = Math.floor(itemPosition.left / $item.width()) + 1;
-
-      console.log(itemOffset);
-      console.log(itemsInRow);
-
-      // Find the project correct item to append to within the item array and append the panel
-      $(itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
-    },
-
-    togglePanel: function(panel) {
-      panel.toggleClass("open").slideToggle(300);
+    togglePanel: function($panel) {
+      $panel.toggleClass("open").slideToggle(300);
     }
   });
 

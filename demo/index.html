@@ -2,17 +2,27 @@
 <html>
 	<head>
 		<title>Patch Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" type="text/css">
 	</head>
-	<body>
+	<body ontouchstart="">
 		<div class="container">
 			<h1>Patch Panel</h1>
-			<p>A responsive panel plugin for grid layouts</p>
+      <p>Displays the corresponding panel for an item beneath the row it was clicked, regardless of items per row, width of items, or number of rows.</p>
 		</div>
-		<div id="patch-container">
+    <div class="resize">
+        <p>Resize Me</p>
+        <div class="resize-bar"></div>
+    </div>
+    <div class="grid-controls">
+      <div class="control-one"></div>
+      <div class="control-two"></div>
+      <div class="control-three"></div>
+    </div>
+		<div class="patch-container">
 			<div class="patch-item patch-button" data-patch-panel="1">One</div>
 			<div class="patch-panel" data-patch-panel="1">One</div>
 			<div class="patch-item patch-button" data-patch-panel="2">Two</div>
@@ -32,11 +42,8 @@
 			<div class="patch-item patch-button thin" data-patch-panel="9">Nine</div>
 			<div class="patch-panel" data-patch-panel="9">Nine</div>
 		</div>
-    <div class="container main">
-      <p>Patch Panel displays the appropriate panel for an item beneath the row it was clicked, regardless of items per row, width of items, or number of rows.</p>
-    </div>
 		<div class="container main install">
-			<a href="https://github.com/alecortega/patch-panel"><i class="fa fa-download"></i>Download</a>
+			<a href="https://github.com/alecortega/patch-panel/archive/master.zip"><i class="fa fa-download"></i>Download</a>
       <a href="https://github.com/alecortega/patch-panel"><i class="fa fa-github"></i>View on GitHub</a>
 			<p>Install from Bower</p>
 			<div class="terminal">$ bower install patch-panel</div>
@@ -47,13 +54,18 @@
       <pre class="terminal"><code><span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/jQuery.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span>
 <span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/patchpanel.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span></code></pre>
 
-      <p>Patch Panel works on the parent container of a group of items and panels.</p>
+      <p>Patch Panel works on the parent container of a group of items, buttons, and panels.</p>
 
       <pre class="terminal"><code><span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-container"</span>></span>
-    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item"</span>>...<<span class="title">div</span>></span>
-    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span>>...<<span class="title">div</span>></span>
-    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item"</span>>...<<span class="title">div</span>></span>
-    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span>>...<<span class="title">div</span>></span>
+    <span class="comment">// Example of the item itself being the button, as seen above.</span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item patch-button"</span><span class="attribute"> data-patch-panel</span>=<span class="value">"1"></span>...<<span class="title">/div</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span><span class="attribute"> data-patch-panel</span>=<span class="value">"1"</span>>...<<span class="title">/div</span>></span>
+
+    <span class="comment">// Example of the button being inside the item</span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-item"</span>>
+        <<span class="title">a </span><span class="attribute">class</span>=<span class="value">"patch-button"</span><span class="attribute"> data-patch-panel</span>=<span class="value">"2"</span>>View More<<span class="title">/a</span>>
+    <<span class="title">/div</span>></span>
+    <span class="tag"><<span class="title">div </span><span class="attribute">class</span>=<span class="value">"patch-panel"</span><span class="attribute"> data-patch-panel</span>=<span class="value">"2"</span>>...<<span class="title">/div</span>></span>
     ...
 <span class="tag"><<span class="title">/div</span>></span></code></pre>
 
@@ -77,7 +89,7 @@
       </div>
       <div class="container main">
       <h2>CSS</h2>
-        <p>All sizing of items is handled by your CSS, Patch Panel will automatically detect how many items there are in a row no matter what the </p>
+        <p>All sizing of items is handled by your CSS.</p>
 
         <pre class="terminal"><code><span class="tag"><span class="title">.patch-item </span>{
   <span class="attribute">height:</span><span class="value"> 200px;</span>
@@ -93,8 +105,13 @@
       <div class="container main">
       <h2>jQuery Initialization</h2>
       <pre class="terminal"><code><span class="tag">$(<span class="title">'.patch-container'</span>).patchpanel({
+  <span class="comment">// Changes the default button selector of ".patch-button"</span>
   <span class="attribute">buttonSelector:</span><span class="value"> '.grid-button'</span>,
+
+  <span class="comment">// Changes the default item selector of ".patch-item"</span>
   <span class="attribute">itemSelector:</span><span class="value"> '.grid-item'</span>,
+
+  <span class="comment">// Changes the default panel selector of ".patch-panel"</span>
   <span class="attribute">panelSelector:</span><span class="value"> '.grid-panel'</span>
 });</span></code></pre>
 		</div>
@@ -105,7 +122,7 @@
 		<script src="../src/patchpanel.js"></script>
 		<script>
 			$(function() {
-				$("#patch-container").patchpanel();
+				$(".patch-container").patchpanel();
 			});
 		</script>
 	</body>
