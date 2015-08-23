@@ -42,6 +42,7 @@
       this.$itemCollection = $(this.element).children(this.settings.itemSelector);
       this.$patchButton = $(this.settings.buttonSelector);
 
+      this.windowWidth = $(window).width();
       this.itemSelector = this.settings.itemSelector;
       this.panelSelector = this.settings.panelSelector;
     },
@@ -77,8 +78,15 @@
       });
 
       plugin.$window.on("resize", function () {
-        var $openPanel = plugin.isPanelOpen();
-        if($openPanel) { plugin.debounce($openPanel.toggleClass("open").hide(), 250); }
+        plugin.debounce( function() {
+          var $openPanel = plugin.isPanelOpen();
+          if($openPanel) {
+            // Prevents resize event from being called on mobile when scrolling
+            if(plugin.$window.width() !== plugin.windowWidth){
+              $openPanel.toggleClass("open").hide();
+            }
+          }
+        }, 250);
       });
     },
 
@@ -128,7 +136,7 @@
     },
 
     togglePanel: function($panel) {
-      $panel.toggleClass("open").slideToggle(300);
+      $panel.toggleClass("open").slideToggle(this.settings.toggleSpeed);
     }
   });
 

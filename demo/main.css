@@ -11,6 +11,7 @@ body,
 html {
   height: 100%;
   margin: 0;
+
   -webkit-font-smoothing: antialiased;
 }
 
@@ -31,7 +32,7 @@ h2 {
 }
 
 a {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,0.4);
   border-radius: 5px;
   color: #FFF;
   display: block;
@@ -39,13 +40,13 @@ a {
   max-width: 300px;
   padding: 20px 25px;
   text-decoration: none;
-  transition: .2s;
+  transition: 0.2s;
   width: 100%;
 }
 
 
 a:hover {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,0.6);
 }
 
 i {
@@ -220,7 +221,7 @@ Containers & Documentation
 }
 
 .components {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,0.4);
   border-radius: 5px;
   display: inline-block;
   font-size: 1.2rem;
@@ -311,7 +312,7 @@ pre {
 }
 
 .terminal {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,0.6);
   border-radius: 5px;
   font-family: 'Source Code Pro';
   font-size: 1em;
@@ -334,7 +335,7 @@ pre {
 }
 
 .comment {
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,0.6);
 }
 
 /********************************
@@ -406,7 +407,8 @@ Media Queries
   }
 
   .patch-panel {
-    margin: .6667%;
+    margin: 1%;
+    width: 98%;
   }
 
   .components {
@@ -417,16 +419,28 @@ Media Queries
 
 @media only screen and (min-width : 992px) {
   .patch-item {
-    margin: .6667%;
+    margin: 0.6667%;
+    margin: calc(4% / 6);
     width: 32%;
   }
 
+  .patch-panel {
+    margin: 0.6667%;
+    margin: calc(4% / 6);
+    width: 98.6666%;
+    width: calc(100% - (4% / 6) * 2);
+
+  }
+
   .wide {
-    margin: .6667%;
+    margin: 0.6667%;
+    margin: calc(4% / 6);
     width: 48.6666%;
+    width: calc(50% - (4% / 6) * 2);
   }
 
   .thin {
     width: 23.6666%;
+    width: calc(25% - (4% / 6) * 2);
   }
 }
