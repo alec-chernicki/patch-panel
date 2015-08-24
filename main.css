@@ -22,7 +22,7 @@ body {
 
 h1 {
   font-size: 3.3rem;
-  margin-top: 60px;
+  margin: 60px auto 0;
 }
 
 h2 {
@@ -33,6 +33,7 @@ h2 {
 
 h3 {
   font-weight: 400;
+  margin: 10px 0;
 }
 
 a {
@@ -78,12 +79,12 @@ Plugin Hero Example
   font-size: 1em;
   font-size: 1.5em;
   letter-spacing: 0;
-  line-height: 200px;
+  line-height: 150px;
 }
 
 .patch-button:hover {
   border: solid 3px #FFF;
-  line-height: 194px;
+  line-height: 144px;
 }
 
 .patch-container {
@@ -95,13 +96,14 @@ Plugin Hero Example
   padding: 2%;
   text-align: center;
   zoom: 1;
+  max-width: 1000px;
 }
 
 .patch-item {
   background-color: #FFF;
   border-radius: 4px;
   float: left;
-  height: 200px;
+  height: 150px;
   margin: 0 0 2% 0;
   width: 100%;
 }
@@ -112,8 +114,8 @@ Plugin Hero Example
   color: #FFF;
   float: left;
   font-size: 1.5em;
-  height: 350px;
-  line-height: 350px;
+  height: 250px;
+  line-height: 250px;
   margin: 0 0 2% 0;
   width: 100%;
 }
@@ -121,9 +123,10 @@ Plugin Hero Example
 .resize {
   color: #2C3E50;
   display: block;
-  margin: 50px auto 0;
+  margin: 50px auto 1%;
   text-align: center;
   width: 90%;
+  max-width: 950px;
 }
 
 .resize p {
@@ -423,6 +426,10 @@ Media Queries
 }
 
 @media only screen and (min-width : 992px) {
+  .patch-container {
+    margin: 4% auto;
+  }
+
   .patch-item {
     margin: 0.6667%;
     margin: calc(4% / 6);
@@ -434,7 +441,10 @@ Media Queries
     margin: calc(4% / 6);
     width: 98.6666%;
     width: calc(100% - (4% / 6) * 2);
+  }
 
+  .resize {
+    margin: 50px auto -2%;
   }
 
   .wide {
