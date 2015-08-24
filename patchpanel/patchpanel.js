@@ -1,11 +1,3 @@
-/*
- *  patch-panel - v1.0
- *  A responsive panel plugin for grid layouts.
- *  http://alecortega.com
- *
- *  Made by Alec Ortega
- *  Under MIT License
- */
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
 ;
@@ -41,7 +33,7 @@
     init: function() {
       this.buildCache();
       this.bindEvents();
-      this.hideAllPanels();
+      this.initializePanels();
     },
 
     buildCache: function () {
@@ -50,6 +42,7 @@
       this.$itemCollection = $(this.element).children(this.settings.itemSelector);
       this.$patchButton = $(this.settings.buttonSelector);
 
+      this.windowWidth = $(window).width();
       this.itemSelector = this.settings.itemSelector;
       this.panelSelector = this.settings.panelSelector;
     },
@@ -85,9 +78,19 @@
       });
 
       plugin.$window.on("resize", function () {
-        var $openPanel = plugin.isPanelOpen();
-        if($openPanel) { plugin.debounce($openPanel.toggleClass("open").hide(), 250); }
+        // Debounce every 250ms to save dat memory yo
+        plugin.debounce(plugin.hidePanel(), 250);
       });
+    },
+
+    hidePanel: function () {
+      var plugin = this;
+      var $openPanel = plugin.isPanelOpen();
+      // Prevents resize from triggering on scroll on  mobile
+      if($openPanel && plugin.windowWidth !== plugin.$window.width()) {
+        $openPanel.toggleClass("open").hide();
+        plugin.windowWidth = plugin.$window.width();
+      }
     },
 
     appendPanel: function ($button, panel) {
@@ -131,12 +134,12 @@
       return $openPanel.length > 0 ? $openPanel : false;
     },
 
-    hideAllPanels: function () {
+    initializePanels: function () {
       $(this.panelSelector).hide();
     },
 
     togglePanel: function($panel) {
-      $panel.toggleClass("open").slideToggle(300);
+      $panel.toggleClass("open").slideToggle(this.settings.toggleSpeed);
     }
   });
 

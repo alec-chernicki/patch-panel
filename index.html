@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Patch Panel</title>
+  <head>
+    <title>Patch Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" type="text/css">
-	</head>
-	<body ontouchstart="">
-		<div class="container">
-			<h1>Patch Panel</h1>
-      <p>Displays the corresponding panel for an item beneath the row it was clicked, regardless of items per row, width of items, or number of rows.</p>
-		</div>
+  </head>
+  <body ontouchstart="">
+    <div class="container">
+      <h1>Patch Panel</h1>
+      <h3>Makes responsive grid + panel layouts possible.</h3>
+    </div>
     <div class="resize">
         <p>Resize Me</p>
         <div class="resize-bar"></div>
@@ -22,35 +22,38 @@
       <div class="control-two"></div>
       <div class="control-three"></div>
     </div>
-		<div class="patch-container">
-			<div class="patch-item patch-button" data-patch-panel="1">One</div>
-			<div class="patch-panel" data-patch-panel="1">One</div>
-			<div class="patch-item patch-button" data-patch-panel="2">Two</div>
-			<div class="patch-panel" data-patch-panel="2">Two</div>
-			<div class="patch-item patch-button" data-patch-panel="3">Three</div>
-			<div class="patch-panel" data-patch-panel="3">Three</div>
-			<div class="patch-item patch-button wide" data-patch-panel="4">Four</div>
-			<div class="patch-panel" data-patch-panel="4">Four</div>
-			<div class="patch-item patch-button wide" data-patch-panel="5">Five</div>
-			<div class="patch-panel" data-patch-panel="5">Five</div>
-			<div class="patch-item patch-button thin" data-patch-panel="6">Six</div>
-			<div class="patch-panel" data-patch-panel="6">Six</div>
-			<div class="patch-item patch-button thin" data-patch-panel="7">Seven</div>
-			<div class="patch-panel" data-patch-panel="7">Seven</div>
-			<div class="patch-item patch-button thin" data-patch-panel="8">Eight</div>
-			<div class="patch-panel" data-patch-panel="8">Eight</div>
-			<div class="patch-item patch-button thin" data-patch-panel="9">Nine</div>
-			<div class="patch-panel" data-patch-panel="9">Nine</div>
-		</div>
-		<div class="container main install">
-			<a href="https://github.com/alecortega/patch-panel/archive/master.zip"><i class="fa fa-download"></i>Download</a>
-      <a href="https://github.com/alecortega/patch-panel"><i class="fa fa-github"></i>View on GitHub</a>
-			<p>Install from Bower</p>
-			<div class="terminal">$ bower install patch-panel</div>
+    <div class="patch-container">
+      <div class="patch-item patch-button" data-patch-panel="1">One</div>
+      <div class="patch-panel" data-patch-panel="1">One</div>
+      <div class="patch-item patch-button" data-patch-panel="2">Two</div>
+      <div class="patch-panel" data-patch-panel="2">Two</div>
+      <div class="patch-item patch-button" data-patch-panel="3">Three</div>
+      <div class="patch-panel" data-patch-panel="3">Three</div>
+      <div class="patch-item patch-button wide" data-patch-panel="4">Four</div>
+      <div class="patch-panel" data-patch-panel="4">Four</div>
+      <div class="patch-item patch-button wide" data-patch-panel="5">Five</div>
+      <div class="patch-panel" data-patch-panel="5">Five</div>
+      <div class="patch-item patch-button thin" data-patch-panel="6">Six</div>
+      <div class="patch-panel" data-patch-panel="6">Six</div>
+      <div class="patch-item patch-button thin" data-patch-panel="7">Seven</div>
+      <div class="patch-panel" data-patch-panel="7">Seven</div>
+      <div class="patch-item patch-button thin" data-patch-panel="8">Eight</div>
+      <div class="patch-panel" data-patch-panel="8">Eight</div>
+      <div class="patch-item patch-button thin" data-patch-panel="9">Nine</div>
+      <div class="patch-panel" data-patch-panel="9">Nine</div>
     </div>
     <div class="container main">
-			<h2>HTML</h2>
-			<p>First, include the path to the file, remember to include jQuery beforehand.</p>
+      <p>Patch Panel displays the corresponding panel for an item beneath the row it was clicked, regardless of items per row, width of items, or number of rows.</p>
+    </div>
+    <div class="container main install">
+      <a href="https://github.com/alecortega/patch-panel/archive/master.zip"><i class="fa fa-download"></i>Download</a>
+      <a href="https://github.com/alecortega/patch-panel"><i class="fa fa-github"></i>View on GitHub</a>
+      <p>Install from Bower</p>
+      <div class="terminal">$ bower install patch-panel</div>
+    </div>
+    <div class="container main">
+      <h2>HTML</h2>
+      <p>First, include the path to the file, remember to include jQuery beforehand.</p>
       <pre class="terminal"><code><span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/jQuery.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span>
 <span class="tag"><<span class="title">script </span><span class="attribute">src</span>=<span class="value">/path/to/patchpanel.min.js"</span>></span><span class="tag"><<span class="title">script</span>></span></code></pre>
 
@@ -113,17 +116,20 @@
 
   <span class="comment">// Changes the default panel selector of ".patch-panel"</span>
   <span class="attribute">panelSelector:</span><span class="value"> '.grid-panel'</span>
+
+  <span class="comment">// Changes the speed of the collapse animation, default is 300(ms)"</span>
+  <span class="attribute">toggleSpeed:</span><span class="value"> 600</span>
 });</span></code></pre>
-		</div>
+    </div>
     <div class="container main">
     Made with <span class="heart"></span> by <a class="personal-link" href="http://alecortega.com">Alec Ortega</a>
     </div>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="../src/patchpanel.js"></script>
-		<script>
-			$(function() {
-				$(".patch-container").patchpanel();
-			});
-		</script>
-	</body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="./patchpanel/patchpanel.js"></script>
+    <script>
+      $(function() {
+        $(".patch-container").patchpanel();
+      });
+    </script>
+  </body>
 </html>

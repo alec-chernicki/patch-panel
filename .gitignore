@@ -7,3 +7,5 @@ test/coverage
 .DS_Store
 ._*
 .Trashes
+
+dist
