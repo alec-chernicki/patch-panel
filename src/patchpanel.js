@@ -78,15 +78,12 @@
       });
 
       plugin.$window.on("resize", function () {
-        plugin.debounce( function() {
-          var $openPanel = plugin.isPanelOpen();
-          if($openPanel) {
-            // Prevents resize event from being called on mobile when scrolling
-            if(plugin.$window.width() !== plugin.windowWidth){
-              $openPanel.toggleClass("open").hide();
-            }
-          }
-        }, 250);
+        var $openPanel = plugin.isPanelOpen();
+        // Prevents resize from triggering on scroll on  mobile
+        if($openPanel && plugin.windowWidth !== plugin.$window.width()) {
+          plugin.debounce( $openPanel.toggleClass("open").hide() , 250);
+          plugin.windowWidth = plugin.$window.width();
+        }
       });
     },
 
