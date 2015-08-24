@@ -1,7 +1,7 @@
 {
   "name": "patch-panel",
   "version": "1.0",
-  "description": "A responsive panel plugin for grid layouts.",
+  "description": "Makes responsive grid + panel layouts possible.",
   "keywords": [
     "responsive",
     "grid",
@@ -28,6 +28,9 @@
       "url": "https://github.com/alecortega"
     }
   ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.5",

@@ -5,13 +5,23 @@
 	"authors": [
 		"Alec Ortega <alecortega@live.com>"
 	],
-	"description": "A responsive panel system for grid layouts",
-	"main": "src/patchpanel.js",
+	"description": "Makes responsive grid + panel layouts possible.",
+	"main": "patchpanel/patchpanel.js",
 	"keywords": [
 		"responsive",
 		"grid",
 		"panel",
 		"jquery"
 	],
+	"dependencies": {
+		"jquery": "~2.1.1"
+	},
 	"license": "MIT"
+	"ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
