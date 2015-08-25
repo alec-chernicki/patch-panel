@@ -94,6 +94,7 @@ Plugin Hero Example
   margin: 4%;
   overflow: auto;
   padding: 2%;
+  position: relative;
   text-align: center;
   zoom: 1;
   max-width: 1000px;
@@ -112,6 +113,7 @@ Plugin Hero Example
   background-color: #FFF;
   border-radius: 4px;
   color: #FFF;
+  display: none;
   float: left;
   font-size: 1.5em;
   height: 250px;

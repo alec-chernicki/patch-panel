@@ -2,9 +2,26 @@
 <html>
   <head>
     <title>Patch Panel</title>
+      <meta name="description" content="Patch Panel is a jQuery plugin that makes responsive grid + panel layouts possible.">
+    <meta name="keywords" content="patchpanel, responsive, panel, grid, layout, jQuery, plugin, CSS3">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Patch Panel" />
+    <meta property="og:description" content="Patch Panel is a jQuery plugin that makes responsive grid + panel layouts possible." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://patchpanel.alecortega.com" />
+    <meta property="og:image" content="http://oi61.tinypic.com/sp8axi.jpg" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1599" />
+    <meta property="og:image:height" content="889" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Patch Panel" />
+    <meta name="twitter:description" content="Patch Panel is a jQuery plugin that makes responsive grid + panel layouts possible." />
+    <meta name="twitter:creator" content="@whynotdostuff" />
+    <meta name="twitter:image:src" content="http://oi61.tinypic.com/sp8axi.jpg" />
+    <meta name="twitter:domain" content="http://patchpanel.alecortega.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./main.css" type="text/css">
   </head>
@@ -28,9 +45,9 @@
       <div class="patch-panel" data-patch-panel="2">Two</div>
       <div class="patch-item patch-button" data-patch-panel="3">Three</div>
       <div class="patch-panel" data-patch-panel="3">Three</div>
-      <div class="patch-item patch-button wide" data-patch-panel="4">Four</div>
+      <div class="patch-item patch-button wide" id="js-four" data-patch-panel="4">Four</div>
       <div class="patch-panel" data-patch-panel="4">Four</div>
-      <div class="patch-item patch-button wide" data-patch-panel="5">Five</div>
+      <div class="patch-item patch-button wide" id="js-five" data-patch-panel="5">Five</div>
       <div class="patch-panel" data-patch-panel="5">Five</div>
       <div class="patch-item patch-button thin" data-patch-panel="6">Six</div>
       <div class="patch-panel" data-patch-panel="6">Six</div>
@@ -93,7 +110,11 @@
       <h2>CSS</h2>
         <p>All sizing of items is handled by your CSS.</p>
 
-        <pre class="terminal"><code><span class="tag"><span class="title">.patch-item </span>{
+        <pre class="terminal"><code><span class="tag"><span class="title">.patch-panel </span>{
+  <span class="attribute">display:</span><span class="value"> none;</span>
+}</span>
+
+<span class="title">.patch-item </span>{
   <span class="attribute">height:</span><span class="value"> 200px;</span>
   <span class="attribute">width:</span><span class="value"> 100%;</span>
 }</span>

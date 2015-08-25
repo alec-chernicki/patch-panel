@@ -101,12 +101,13 @@
 
       // Stores the index of the current item in relation to the item collection
       var itemIndex = $(plugin.$itemCollection).index($item);
-
+      console.log(itemIndex);
+      $(window).width() - ($(window).width() - $(plugin.element).width());
       // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.round(plugin.$container.width() / $item.width());
+      var itemsInRow = Math.round(plugin.$container.width() / $item.width()) - 1;
 
       // Calculates the number of items that follow the clicked one within the row
-      var itemOffset = Math.floor($item.position().left / $item.width()) + 1;
+      var itemOffset = Math.round(($item.position().left - 1) / $item.width());
 
       // Appends the panel at the items current index plus the offset
       $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
@@ -135,7 +136,9 @@
     },
 
     initializePanels: function () {
+      var plugin = this;
       $(this.panelSelector).hide();
+      plugin.$container.css("position", "relative");
     },
 
     togglePanel: function($panel) {
