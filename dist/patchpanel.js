@@ -116,6 +116,7 @@
       // Stores the index of the current item in relation to the item collection
       var itemIndex = $(plugin.$itemCollection).index($item);
 
+      $(window).width() - ($(window).width() - $(plugin.element).width());
       // Calculates number of items in row by dividing container width by width of item
       var itemsInRow = Math.floor(plugin.$container.width() / $item.width());
 
