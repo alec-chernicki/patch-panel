@@ -23,14 +23,14 @@ module.exports = function(grunt) {
 				banner: "<%= meta.banner %>"
 			},
 			dist: {
-				src: ["patchpanel/patchpanel.js"],
-				dest: "patchpanel/patchpanel.js"
+				src: ["src/patchpanel.js"],
+				dest: "dist/patchpanel.js"
 			}
 		},
 
 		// Lint definitions
 		jshint: {
-			files: ["patchpanel/patchpanel.js"],
+			files: ["src/patchpanel.js"],
 			options: {
 				jshintrc: ".jshintrc"
 			}
@@ -39,8 +39,8 @@ module.exports = function(grunt) {
 		// Minify definitions
 		uglify: {
 			my_target: {
-				src: ["patchpanel/patchpanel.js"],
-				dest: "patchpanel/patchpanel.min.js"
+				src: ["dist/patchpanel.js"],
+				dest: "dist/patchpanel.min.js"
 			},
 			options: {
 				banner: "<%= meta.banner %>"
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 		// Better than calling grunt a million times
 		// (call 'grunt watch')
 		watch: {
-		    files: ['patchpanel/*'],
+		    files: ['src/*'],
 		    tasks: ['default']
 		}
 
@@ -65,5 +65,4 @@ module.exports = function(grunt) {
 	grunt.registerTask("build", ["concat", "uglify"]);
 	grunt.registerTask("default", ["jshint", "build"]);
 	grunt.registerTask("travis", ["default"]);
-
 };

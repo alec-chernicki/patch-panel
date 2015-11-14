@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/alecortega/patch-panel/badges/gpa.svg)](https://codeclimate.com/github/alecortega/patch-panel)
+[![Code Climate](https://codeclimate.com/github/alecortega/patch-panel/badges/gpa.svg)](https://codeclimate.com/github/alecortega/patch-panel)[![Build Status](https://travis-ci.org/alecortega/patch-panel.svg)](https://travis-ci.org/alecortega/patch-panel)
 # Patch Panel
 
 [1]: <https://github.com/alecortega/patch-panel>
