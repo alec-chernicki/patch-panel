@@ -9,3 +9,5 @@ test/coverage
 .Trashes
 
 dist
+node_modules
+bower_components

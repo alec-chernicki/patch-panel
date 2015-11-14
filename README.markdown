@@ -1,5 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/alecortega/patch-panel/badges/gpa.svg)](https://codeclimate.com/github/alecortega/patch-panel)
 # Patch Panel
-_______
 
 [1]: <https://github.com/alecortega/patch-panel>
 
@@ -8,6 +8,8 @@ Patch Panel makes responsive grid + panel layouts possible by displaying the cor
 #### Demo
 
 http://patchpanel.alecortega.com
+
+![alt tag](http://oi61.tinypic.com/sp8axi.jpg)
 
 #### Package Managers
 
@@ -29,9 +31,7 @@ npm install patch-panel
 |toggleSpeed | int | 300 | Changes the speed at which panels are animated.|
 
 
-#### Example
-
-Initialize with:
+#### Initialization Example
 
 ```javascript
 $(element).patchpanel({
@@ -54,10 +54,11 @@ $(element).patchpanel({
 * Better handling of events so that only two panels are triggered at any one time.
 * Callback events for panel triggered, and panel finished collapsing.
 * Handling of items of multiple heights.
+* Add super simple stylesheet that adds proper styling.
 
 #### Dependencies
 
-jQuery 1.7
+jQuery 2.1
 
 #### License
 

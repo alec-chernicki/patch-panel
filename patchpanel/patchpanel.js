@@ -1,6 +1,11 @@
-// the semi-colon before function invocation is a safety net against concatenated
-// scripts and/or other plugins which may not be closed properly.
-;
+/*
+ *  patch-panel - v1.0
+ *  Makes responsive grid + panel layouts possible.
+ *  http://alecortega.com
+ *
+ *  Made by Alec Ortega
+ *  Under MIT License
+ */
 (function($, window, document, undefined) {
 
   "use strict";
@@ -101,7 +106,7 @@
 
       // Stores the index of the current item in relation to the item collection
       var itemIndex = $(plugin.$itemCollection).index($item);
-      console.log(itemIndex);
+
       $(window).width() - ($(window).width() - $(plugin.element).width());
       // Calculates number of items in row by dividing container width by width of item
       var itemsInRow = Math.round(plugin.$container.width() / $item.width()) - 1;

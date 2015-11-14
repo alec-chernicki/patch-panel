@@ -1,6 +1,6 @@
 {
   "name": "patch-panel",
-  "version": "1.0",
+  "version": "0.0.2",
   "description": "Makes responsive grid + panel layouts possible.",
   "keywords": [
     "responsive",
@@ -8,6 +8,7 @@
     "panel",
     "jquery"
   ],
+  "main": "patchpanel/patchpanel.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alecortega/patch-panel.git"

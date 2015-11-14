@@ -1,6 +1,6 @@
 {
 	"name": "patch-panel",
-	"version": "1.0",
+	"version": "0.0.2",
 	"homepage": "http://patchpanel.alecortega.com",
 	"authors": [
 		"Alec Ortega <alecortega@live.com>"
@@ -16,7 +16,7 @@
 	"dependencies": {
 		"jquery": "~2.1.1"
 	},
-	"license": "MIT"
+	"license": "MIT",
 	"ignore": [
     "**/.*",
     "node_modules",

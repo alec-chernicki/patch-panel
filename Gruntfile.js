@@ -23,14 +23,14 @@ module.exports = function(grunt) {
 				banner: "<%= meta.banner %>"
 			},
 			dist: {
-				src: ["src/patchpanel.js"],
-				dest: "dist/patchpanel.js"
+				src: ["patchpanel/patchpanel.js"],
+				dest: "patchpanel/patchpanel.js"
 			}
 		},
 
 		// Lint definitions
 		jshint: {
-			files: ["src/patchpanel.js"],
+			files: ["patchpanel/patchpanel.js"],
 			options: {
 				jshintrc: ".jshintrc"
 			}
@@ -39,8 +39,8 @@ module.exports = function(grunt) {
 		// Minify definitions
 		uglify: {
 			my_target: {
-				src: ["dist/patchpanel.js"],
-				dest: "dist/patchpanel.min.js"
+				src: ["patchpanel/patchpanel.js"],
+				dest: "patchpanel/patchpanel.min.js"
 			},
 			options: {
 				banner: "<%= meta.banner %>"
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 		// Better than calling grunt a million times
 		// (call 'grunt watch')
 		watch: {
-		    files: ['src/*'],
+		    files: ['patchpanel/*'],
 		    tasks: ['default']
 		}
 
