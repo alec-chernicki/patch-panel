@@ -84,6 +84,7 @@
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
         else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
+          // TODO: Turn these into promises or callbacks
           plugin.appendPanel($el, $hiddenPanel);
           plugin.togglePanel($openPanel);
           plugin.togglePanel($hiddenPanel);
@@ -115,15 +116,14 @@
       // Stores the index of the current item in relation to the item collection
       var itemIndex = $(plugin.$itemCollection).index($item);
 
-      $(window).width() - ($(window).width() - $(plugin.element).width());
       // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.round(plugin.$container.width() / $item.width()) - 1;
+      var itemsInRow = Math.floor(plugin.$container.width() / $item.width());
 
       // Calculates the number of items that follow the clicked one within the row
-      var itemOffset = Math.round(($item.position().left - 1) / $item.width());
+      var itemOffset = Math.floor(($item.position().left - 1) / $item.width());
 
       // Appends the panel at the items current index plus the offset
-      $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
+      $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset - 1)]).append().after(panel);
     },
 
     debounce: function(func, wait, immediate) {
@@ -144,7 +144,7 @@
     isPanelOpen: function () {
       var $openPanel = $(this.panelSelector + ".open");
 
-      // Returns panel object if a panel is open else returns false
+      // Returns panel object if a panel is open, else returns false
       return $openPanel.length > 0 ? $openPanel : false;
     },
 
