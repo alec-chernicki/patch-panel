@@ -65,8 +65,7 @@
 
         // IF: Button clicked corresponds to a panel and no panels are already open, open panel
         if (!$openPanel) {
-          plugin.appendPanel($el, $hiddenPanel);
-          plugin.togglePanel($hiddenPanel);
+          plugin.appendPanel($el, $hiddenPanel, plugin.togglePanel($hiddenPanel));
         }
 
         // ELSE IF: Button clicked corresponds to a panel that is already open
@@ -77,9 +76,7 @@
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
         else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
           // TODO: Turn these into promises or callbacks
-          plugin.appendPanel($el, $hiddenPanel);
-          plugin.togglePanel($openPanel);
-          plugin.togglePanel($hiddenPanel);
+          plugin.appendPanel($el, $hiddenPanel, plugin.togglePanel($openPanel, plugin.togglePanel($hiddenPanel)));
         }
       });
 
@@ -99,7 +96,7 @@
       }
     },
 
-    appendPanel: function ($button, panel) {
+    appendPanel: function ($button, panel, callback) {
       var plugin = this;
 
       // Stores the current portfolio item object
@@ -116,6 +113,8 @@
 
       // Appends the panel at the items current index plus the offset
       $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset - 1)]).append().after(panel);
+
+      if(callback) callback();
     },
 
     debounce: function(func, wait, immediate) {
@@ -146,8 +145,9 @@
       plugin.$container.css("position", "relative");
     },
 
-    togglePanel: function($panel) {
+    togglePanel: function($panel, callback) {
       $panel.toggleClass("open").slideToggle(this.settings.toggleSpeed);
+      if(callback) callback();
     }
   });
 

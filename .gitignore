@@ -8,5 +8,6 @@ test/coverage
 ._*
 .Trashes
 
+dist
 node_modules
 bower_components
