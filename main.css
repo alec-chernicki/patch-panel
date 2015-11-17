@@ -91,9 +91,11 @@ Plugin Hero Example
   background-color: #2C3E50;
   border-radius: 5px;
   color: #FFF;
+  display: flex;
+  flex-flow: row wrap;
   margin: 4%;
   overflow: auto;
-  padding: 2%;
+  padding: 10px;
   position: relative;
   text-align: center;
   zoom: 1;
@@ -105,7 +107,7 @@ Plugin Hero Example
   border-radius: 4px;
   float: left;
   height: 150px;
-  margin: 0 0 2% 0;
+  margin: 6px;
   width: 100%;
 }
 
@@ -114,11 +116,12 @@ Plugin Hero Example
   border-radius: 4px;
   color: #FFF;
   display: none;
+  flex: 1 100%;
   float: left;
   font-size: 1.5em;
   height: 250px;
   line-height: 250px;
-  margin: 0 0 2% 0;
+  margin: 5px;
   width: 100%;
 }
 
@@ -416,38 +419,28 @@ Media Queries
     font-size: 3.3rem;
   }
 
-  .patch-item {
-    margin: 1%;
-    width: 48%;
-  }
-
-  .patch-panel {
-    margin: 1%;
-    width: 98%;
-  }
-
   .components {
     margin: 1.5%;
     width: 46%;
+  }
+
+  .patch-item {
+    flex: 1 30%;
+  }
+
+  .wide {
+    flex: 2 100%;
   }
 }
 
 @media only screen and (min-width : 992px) {
   .patch-container {
     margin: 4% auto;
+    padding: 25px;
   }
 
   .patch-item {
-    margin: 0.6667%;
-    margin: calc(4% / 6);
-    width: 32%;
-  }
-
-  .patch-panel {
-    margin: 0.6667%;
-    margin: calc(4% / 6);
-    width: 98.6666%;
-    width: calc(100% - (4% / 6) * 2);
+    flex: 1 30%;
   }
 
   .resize {
@@ -455,14 +448,10 @@ Media Queries
   }
 
   .wide {
-    margin: 0.6667%;
-    margin: calc(4% / 6);
-    width: 48.6666%;
-    width: calc(50% - (4% / 6) * 2);
+    flex: 2 40%;
   }
 
   .thin {
-    width: 23.6666%;
-    width: calc(25% - (4% / 6) * 2);
+    flex: 1 20%;
   }
 }
