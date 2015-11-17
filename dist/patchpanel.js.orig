@@ -1,5 +1,5 @@
 /*
- *  patch-panel - v0.0.3
+ *  patch-panel - v0.0.2
  *  Makes responsive grid + panel layouts possible.
  *  http://alecortega.com
  *
@@ -84,7 +84,10 @@
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
         else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
+<<<<<<< dc15862fd2a9b624ddadfd8668b9eb04925c27e1
           // TODO: Turn these into promises or callbacks
+=======
+>>>>>>> Adds Travis CI + Grunt test
           plugin.appendPanel($el, $hiddenPanel);
           plugin.togglePanel($openPanel);
           plugin.togglePanel($hiddenPanel);
@@ -116,6 +119,7 @@
       // Stores the index of the current item in relation to the item collection
       var itemIndex = $(plugin.$itemCollection).index($item);
 
+<<<<<<< dc15862fd2a9b624ddadfd8668b9eb04925c27e1
       // Calculates number of items in row by dividing container width by width of item
       var itemsInRow = Math.floor(plugin.$container.width() / $item.width());
 
@@ -124,6 +128,17 @@
 
       // Appends the panel at the items current index plus the offset
       $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset - 1)]).append().after(panel);
+=======
+      $(window).width() - ($(window).width() - $(plugin.element).width());
+      // Calculates number of items in row by dividing container width by width of item
+      var itemsInRow = Math.round(plugin.$container.width() / $item.width()) - 1;
+
+      // Calculates the number of items that follow the clicked one within the row
+      var itemOffset = Math.round(($item.position().left - 1) / $item.width());
+
+      // Appends the panel at the items current index plus the offset
+      $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset)]).append().after(panel);
+>>>>>>> Adds Travis CI + Grunt test
     },
 
     debounce: function(func, wait, immediate) {
@@ -144,7 +159,11 @@
     isPanelOpen: function () {
       var $openPanel = $(this.panelSelector + ".open");
 
+<<<<<<< dc15862fd2a9b624ddadfd8668b9eb04925c27e1
       // Returns panel object if a panel is open, else returns false
+=======
+      // Returns panel object if a panel is open else returns false
+>>>>>>> Adds Travis CI + Grunt test
       return $openPanel.length > 0 ? $openPanel : false;
     },
 
