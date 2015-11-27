@@ -82,20 +82,22 @@
         }
       });
 
-      plugin.$window.on("resize", function() {
-        // Debounce every 250ms to save dat memory yo
-        plugin.debounce(plugin.hidePanel(), 250);
-      });
+      // TODO: Refactor debounce, one level of abstraction too many
+      var debouncedResize = plugin.hidePanel();
+
+      plugin.$window.on("resize", debouncedResize);
     },
 
     hidePanel: function() {
       var plugin = this;
-      var $openPanel = plugin.isPanelOpen();
-      // Prevents resize from triggering on scroll on  mobile
-      if ($openPanel && plugin.windowWidth !== plugin.$window.width()) {
-        $openPanel.toggleClass("open").hide();
-        plugin.windowWidth = plugin.$window.width();
-      }
+      return plugin.debounce(function() {
+        var $openPanel = plugin.isPanelOpen();
+        // Prevents resize from triggering on scroll on  mobile
+        if ($openPanel && plugin.windowWidth !== plugin.$window.width()) {
+          $openPanel.toggleClass("open").hide();
+          plugin.windowWidth = plugin.$window.width();
+        }
+      }, 200);
     },
 
     appendPanel: function($button, panel) {
@@ -120,8 +122,7 @@
     debounce: function(func, wait, immediate) {
       var timeout;
       return function() {
-        var context = this,
-          args = arguments;
+        var context = this, args = arguments;
         var later = function() {
           timeout = null;
           if (!immediate) func.apply(context, args);
