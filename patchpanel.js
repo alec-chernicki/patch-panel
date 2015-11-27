@@ -49,7 +49,7 @@
       this.initializePanels();
     },
 
-    buildCache: function () {
+    buildCache: function() {
       this.$window = $(window);
       this.$container = $(this.element);
       this.$itemCollection = $(this.element).children(this.settings.itemSelector);
@@ -60,10 +60,10 @@
       this.panelSelector = this.settings.panelSelector;
     },
 
-    bindEvents: function () {
+    bindEvents: function() {
       var plugin = this;
 
-      plugin.$patchButton.on("click", function (e) {
+      plugin.$patchButton.on("click", function(e) {
         // Prevent default in case the button is an anchor tag
         e.preventDefault();
 
@@ -84,30 +84,31 @@
 
         // ELSE IF: Button clicked corresponds to a different panel and a panel is open
         else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
-          // TODO: Turn these into promises or callbacks
           plugin.appendPanel($el, $hiddenPanel);
           plugin.togglePanel($openPanel);
           plugin.togglePanel($hiddenPanel);
         }
       });
 
-      plugin.$window.on("resize", function () {
-        // Debounce every 250ms to save dat memory yo
-        plugin.debounce(plugin.hidePanel(), 250);
-      });
+      // TODO: Refactor debounce, one level of abstraction too many
+      var debouncedResize = plugin.hidePanel();
+
+      plugin.$window.on("resize", debouncedResize);
     },
 
-    hidePanel: function () {
+    hidePanel: function() {
       var plugin = this;
-      var $openPanel = plugin.isPanelOpen();
-      // Prevents resize from triggering on scroll on  mobile
-      if($openPanel && plugin.windowWidth !== plugin.$window.width()) {
-        $openPanel.toggleClass("open").hide();
-        plugin.windowWidth = plugin.$window.width();
-      }
+      return plugin.debounce(function() {
+        var $openPanel = plugin.isPanelOpen();
+        // Prevents resize from triggering on scroll on  mobile
+        if ($openPanel && plugin.windowWidth !== plugin.$window.width()) {
+          $openPanel.toggleClass("open").hide();
+          plugin.windowWidth = plugin.$window.width();
+        }
+      }, 200);
     },
 
-    appendPanel: function ($button, panel) {
+    appendPanel: function($button, panel) {
       var plugin = this;
 
       // Stores the current portfolio item object
@@ -141,21 +142,21 @@
       };
     },
 
-    isPanelOpen: function () {
+    isPanelOpen: function() {
       var $openPanel = $(this.panelSelector + ".open");
 
       // Returns panel object if a panel is open, else returns false
       return $openPanel.length > 0 ? $openPanel : false;
     },
 
-    initializePanels: function () {
+    initializePanels: function() {
       var plugin = this;
       $(this.panelSelector).hide();
       plugin.$container.css("position", "relative");
     },
 
     togglePanel: function($panel) {
-      $panel.toggleClass("open").slideToggle(this.settings.toggleSpeed);
+      $panel.stop().toggleClass("open").slideToggle(this.settings.toggleSpeed);
     }
   });
 
