@@ -53,9 +53,9 @@ $(element).patchpanel({
  
 ### Multiple patch-containers
 
- Patch-Panel can support having multiple containers and having them nested inside of each other.
+ Patch-Panel can support having multiple containers and having them nested inside of each other. In order to use this feature, give your patch containers a unique ID, as done in the examples below. Note that this does not change how you initiailze the containers, just initialize by the container class (with `$(".patch-container").patchpanel();`).
 
- One after the other
+* One after the other
 ```HTML
 <div id = "a" class = "patch-container">
   <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
@@ -75,7 +75,7 @@ $(element).patchpanel({
   <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
 </div>
 ```
- One nested in the other
+* One nested in the other
 ```HTML
 <div id = "a" class = "patch-container">
   <div class="patch-item patch-button" data-patch-panel="1">1.1 button</div>
