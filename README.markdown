@@ -35,67 +35,67 @@ npm install patch-panel
 
 #### Initialization Example
 
-````javascript
+```javascript
 $(element).patchpanel({
   toggleSpeed: 600
 });
-````
+```
 
 #### Gotchas
 
 * All elements are automatically hidden upon initialization with jQuery. Since there's a delay between the DOM loading and javascript initializing, the panels may flicker from visible to hidden. You can avoid this by placing the following in your stylesheet:
 
-````javascript
+```CSS
 .patch-panel {
   display: none;
 }
-````
+```
  
 ### Multiple patch-containers
 
- Patch-Panel can support having multiple containers and having them nested inside eachother.
+ Patch-Panel can support having multiple containers and having them nested inside of each other.
 
  One after the other
-````
- <div id = "a" class = "patch-container">
-     <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="2">1.2 button</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="3">1.3 button</div>
-     <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
-     <div class="patch-panel" data-patch-panel="2">1.2 panel</div>
-     <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
- </div>
- <br>
- <div id = "b" class = "patch-container">
-     <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
-     <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
-     <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
-     <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
-     <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
-     <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
- </div>
-````
+```HTML
+<div id = "a" class = "patch-container">
+  <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
+  <div class="navfield patch-item patch-button" data-patch-panel="2">1.2 button</div>
+  <div class="navfield patch-item patch-button" data-patch-panel="3">1.3 button</div>
+  <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
+  <div class="patch-panel" data-patch-panel="2">1.2 panel</div>
+  <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
+</div>
+<br>
+<div id = "b" class = "patch-container">
+  <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
+  <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
+  <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
+  <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
+  <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
+  <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
+</div>
+```
  One nested in the other
-````
- <div id = "a" class = "patch-container">
-     <div class="patch-item patch-button" data-patch-panel="1">1.1 button</div>
-     <div class="patch-item patch-button" data-patch-panel="2">1.2 button (Nested)</div>
-     <div class="patch-item patch-button" data-patch-panel="3">1.3 button</div>
-     <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
-     <div class="patch-panel" data-patch-panel="2">
-         1.2 panel
-         <div id = "b" class = "patch-container">
-             <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
-             <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
-             <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
-             <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
-             <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
-             <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
-         </div>
-     </div>
-     <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
- </div>
-````
+```HTML
+<div id = "a" class = "patch-container">
+  <div class="patch-item patch-button" data-patch-panel="1">1.1 button</div>
+  <div class="patch-item patch-button" data-patch-panel="2">1.2 button (Nested)</div>
+  <div class="patch-item patch-button" data-patch-panel="3">1.3 button</div>
+  <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
+  <div class="patch-panel" data-patch-panel="2">
+    1.2 panel
+    <div id = "b" class = "patch-container">
+      <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
+      <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
+      <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
+      <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
+      <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
+      <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
+    </div>
+  </div>
+  <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
+</div>
+```
 #### Future Updates
 
 * Better handling of events so that only two panels are triggered at any one time.
