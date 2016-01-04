@@ -53,7 +53,7 @@ $(element).patchpanel({
  
 ### Multiple patch-containers
 
- Patch-Panel can support having multiple containers and having them nested inside of each other. In order to use this feature, give your patch containers a unique ID, as done in the examples below. Note that this does not change how you initiailze the containers, just initialize by the container class (with `$(".patch-container").patchpanel();`).
+ Patch-Panel can support having multiple containers and having them nested inside of each other. In order to use this feature, give your patch containers a unique ID, as done in the examples below. Note that this does not change how you initiailze the containers, just initialize by the container class with `$(".patch-container").patchpanel();`.
 
 * One after the other
 ```HTML
