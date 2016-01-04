@@ -35,11 +35,11 @@ npm install patch-panel
 
 #### Initialization Example
 
-```javascript
+````javascript
 $(element).patchpanel({
   toggleSpeed: 600
 });
-```
+````
 
 #### Gotchas
 
@@ -51,7 +51,9 @@ $(element).patchpanel({
 }
 ````
  
- #### Multiple patch-containers
+### Multiple patch-containers
+
+ Patch-Panel can support having multiple containers and having them nested inside eachother.
 
  One after the other
 ````
@@ -65,9 +67,9 @@ $(element).patchpanel({
  </div>
  <br>
  <div id = "b" class = "patch-container">
-     <div class="navfield patch-item patch-button" data-patch-panel="1">2.1 button</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="2">2.2 button</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="3">2.3 button</div>
+     <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
+     <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
+     <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
      <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
      <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
      <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
@@ -76,16 +78,16 @@ $(element).patchpanel({
  One nested in the other
 ````
  <div id = "a" class = "patch-container">
-     <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="2">1.2 button (Nested)</div>
-     <div class="navfield patch-item patch-button" data-patch-panel="3">1.3 button</div>
+     <div class="patch-item patch-button" data-patch-panel="1">1.1 button</div>
+     <div class="patch-item patch-button" data-patch-panel="2">1.2 button (Nested)</div>
+     <div class="patch-item patch-button" data-patch-panel="3">1.3 button</div>
      <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
      <div class="patch-panel" data-patch-panel="2">
          1.2 panel
          <div id = "b" class = "patch-container">
-             <div class="navfield patch-item patch-button" data-patch-panel="1">2.1 button</div>
-             <div class="navfield patch-item patch-button" data-patch-panel="2">2.2 button</div>
-             <div class="navfield patch-item patch-button" data-patch-panel="3">2.3 button</div>
+             <div class="patch-item patch-button" data-patch-panel="1">2.1 button</div>
+             <div class="patch-item patch-button" data-patch-panel="2">2.2 button</div>
+             <div class="patch-item patch-button" data-patch-panel="3">2.3 button</div>
              <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
              <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
              <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
