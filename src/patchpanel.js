@@ -8,77 +8,33 @@
  */
 (function($, window, document, undefined) {
 
-  "use strict";
-
-  // Create the defaults once
-  var pluginName = "patchpanel",
-    defaults = {
-      buttonSelector: ".patch-button",
-      itemSelector: ".patch-item",
-      panelSelector: ".patch-panel",
-      toggleSpeed: 300
-    };
-
-  // The actual plugin constructor
-  function Plugin(element, options) {
-    this.element = element;
-    // jQuery has an extend method which merges the contents of two or
-    // more objects, storing the result in the first object. The first object
-    // is generally empty as we don"t want to alter the default options for
-    // future instances of the plugin
-    this.settings = $.extend({}, defaults, options);
-    this._defaults = defaults;
-    this._name = pluginName;
-
-    this.init();
-  }
-
-  // Avoid Plugin.prototype conflicts
-  $.extend(Plugin.prototype, {
-    init: function() {
-      this.buildCache();
-      this.bindEvents();
-      this.initializePanels();
-    },
-
-    buildCache: function() {
-      this.$window = $(window);
-      this.$container = $(this.element);
-      this.$itemCollection = $(this.element).children(this.settings.itemSelector);
-      this.$patchButton = $(this.settings.buttonSelector);
-
-      this.windowWidth = $(window).width();
-      this.itemSelector = this.settings.itemSelector;
-      this.panelSelector = this.settings.panelSelector;
-    },
-
-    bindEvents: function() {
-      var plugin = this;
-
-      plugin.$patchButton.on("click", function(e) {
-        // Prevent default in case the button is an anchor tag
-        e.preventDefault();
-
-        var $el = $(this);
-        var $openPanel = plugin.isPanelOpen();
-        var $hiddenPanel = $(plugin.panelSelector + "[data-patch-panel=" + $el.attr("data-patch-panel") + "]");
-
-        // IF: Button clicked corresponds to a panel and no panels are already open, open panel
-        if (!$openPanel) {
-          plugin.appendPanel($el, $hiddenPanel);
-          plugin.togglePanel($hiddenPanel);
-        }
-
-        // ELSE IF: Button clicked corresponds to a panel that is already open
         else if ($openPanel.attr("data-patch-panel") === $hiddenPanel.attr("data-patch-panel")) {
-          plugin.togglePanel($openPanel);
-        }
+    "use strict";
 
-        // ELSE IF: Button clicked corresponds to a different panel and a panel is open
-        else if ($openPanel.attr("data-patch-panel") !== $hiddenPanel.attr("data-patch-panel")) {
-          plugin.appendPanel($el, $hiddenPanel);
-          plugin.togglePanel($openPanel);
-          plugin.togglePanel($hiddenPanel);
+    // Create the default selectors
+    var pluginName = "patchpanel",
+        defaults = {
+            itemSelector: ".patch-item",
+            panelSelector: ".patch-panel",
+            toggleSpeed: 300
+        };
+
+    function Plugin(element, options) {
+        this.element = element;
+        // JQuery has an extend method which merges the contents of two or
+        // more objects, storing the result in the first object. The first object
+        // is generally empty as we don't want to alter the default options for
+        // future instances of the plugin
+
+        this.settings = $.extend({}, defaults, options);
+
+        // for multiple panels modify selectors to only take relevant elements to the current list
+        if(element.hasAttribute('id')) { // Multiple containers require IDs to be given to each one for differentiation
+
+            var idSelector    = "#" + element.id; // Container ID
+            var classSelector = "#" + element.className; // Container class
+
+            // Selection requirements require the following pattern to avoid errors when there are multiple patch panels
         }
       });
 
@@ -95,59 +51,27 @@
         // Prevents resize from triggering on scroll on  mobile
         if ($openPanel && plugin.windowWidth !== plugin.$window.width()) {
           $openPanel.toggleClass("open").hide();
-          plugin.windowWidth = plugin.$window.width();
-        }
-      }, 200);
-    },
-
     appendPanel: function($button, panel) {
-      var plugin = this;
 
       // Stores the current portfolio item object
-      var $item = $button.closest(plugin.itemSelector);
+        this._name = pluginName;
 
       // Stores the index of the current item in relation to the item collection
-      var itemIndex = $(plugin.$itemCollection).index($item);
-
-      // Calculates number of items in row by dividing container width by width of item
-      var itemsInRow = Math.floor(plugin.$container.width() / $item.width());
-
       // Calculates the number of items that follow the clicked one within the row
-      var itemOffset = Math.floor(($item.position().left - 1) / $item.width());
+        this.init(); //Initializes the container by 1) Finding elements, 2) Applying events, 3) Applying formatting (closing open panels)
+    }
 
-      // Appends the panel at the items current index plus the offset
-      $(plugin.$itemCollection[itemIndex + (itemsInRow - itemOffset - 1)]).append().after(panel);
-    },
+    // Avoid Plugin.prototype conflicts
+    $.extend(Plugin.prototype, {
 
-    debounce: function(func, wait, immediate) {
-      var timeout;
-      return function() {
-        var context = this, args = arguments;
-        var later = function() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-      };
-    },
-
-    isPanelOpen: function() {
-      var $openPanel = $(this.panelSelector + ".open");
+        init: function() {
+            this.buildCache(); // Find associated elements and window properties
+            this.bindEvents(); // Apply on click events, and window resize events
+            this.initializePanels(); //set initial panel format (all closed and relative postitioned)
+        },
 
       // Returns panel object if a panel is open, else returns false
       return $openPanel.length > 0 ? $openPanel : false;
-    },
-
-    initializePanels: function() {
-      var plugin = this;
-      $(this.panelSelector).hide();
-      plugin.$container.css("position", "relative");
-    },
-
-    togglePanel: function($panel) {
       $panel.stop().toggleClass("open").slideToggle(this.settings.toggleSpeed);
     }
   });
@@ -159,7 +83,22 @@
       if (!$.data(this, "plugin_" + pluginName)) {
         $.data(this, "plugin_" + pluginName, new Plugin(this, options));
       }
+
+
+
+
+
+
+
+        isPanelOpen: function() {
+
+            var $openPanel = $(this.panelSelector + ".open");
+
+            // Returns panel object if a panel is open, else returns false
+            return $openPanel.length > 0 ? $openPanel : false;
+        },
+
+        }
     });
-  };
 
 })(jQuery, window, document);
