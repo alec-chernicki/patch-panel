@@ -30,7 +30,7 @@
         this.settings = $.extend({}, defaults, options);
 
         // for multiple panels modify selectors to only take relevant elements to the current list
-        if(element.hasAttribute('id')) { // Multiple containers require IDs to be given to each one for differentiation
+        if(element.hasAttribute("id")) { // Multiple containers require IDs to be given to each one for differentiation
 
             var idSelector    = "#" + element.id; // Container ID
             var classSelector = "#" + element.className; // Container class
@@ -48,11 +48,11 @@
             //this.settings["externalPanelSelector"] = this.settings["panelSelector"]+ "[data-patch-container=" + idSelector.substring(1) + "]";
 
             // Select buttons
-            this.settings["buttonSelector"] = idSelector + ' ' + this.settings["buttonSelector"] + ':not("' + idSelector + ' ' + classSelector + ' ' + this.settings["buttonSelector"] + '")';
+            this.settings.buttonSelector = idSelector + " " + this.settings.buttonSelector + ":not(\"" + idSelector + " " + classSelector + " " + this.settings.buttonSelector + "\")";
             // Select items
-            this.settings["itemSelector"  ] = idSelector + ' ' + this.settings["itemSelector"  ] + ':not("' + idSelector + ' ' + classSelector + ' ' + this.settings["itemSelector"  ] + '")';
-            // Locate panels
-            this.settings["panelSelector" ] = idSelector + ' ' + this.settings["panelSelector" ] + ':not("' + idSelector + ' ' + classSelector + ' ' + this.settings["panelSelector" ] + '")';
+            this.settings.itemSelector   = idSelector + " " + this.settings.itemSelector   + ":not(\"" + idSelector + " " + classSelector + " " + this.settings.itemSelector   + "\")";
+            // Select panels
+            this.settings.panelSelector  = idSelector + " " + this.settings.panelSelector  + ":not(\"" + idSelector + " " + classSelector + " " + this.settings.panelSelector  + "\")";
         }
 
         this._name = pluginName;
@@ -78,7 +78,7 @@
 
             // To support external buttons the line below becomes:
             // this.$patchButton = $(this.settings.buttonSelector).add(this.settings.externalButtonSelector);
-            this.$patchButton = $(this.settings.buttonSelector)
+            this.$patchButton = $(this.settings.buttonSelector);
 
             this.windowWidth = $(window).width();
             this.itemSelector = this.settings.itemSelector;
@@ -130,7 +130,7 @@
                 }
 
                 //Prevents event bubbling on nested panels from closing the panels as soon as they are opened
-                e.stopImmediatePropagation()
+                e.stopImmediatePropagation();
             });
 
             // TODO: Refactor debounce, one level of abstraction too many
