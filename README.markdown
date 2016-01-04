@@ -10,6 +10,88 @@ Patch Panel makes responsive grid + panel layouts possible by displaying the cor
 http://patchpanel.alecortega.com
 
 ![alt tag](http://oi61.tinypic.com/sp8axi.jpg)
+ 
+#### Multiple patch-containers
+
+ One after the other
+````
+ <div id = "a" class = "patch-container">
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="2">1.2 button</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="3">1.3 button</div>
+ 
+     <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
+ 
+     <div class="patch-panel" data-patch-panel="2">1.2 panel</div>
+ 
+     <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
+ 
+ </div>
+ 
+ <br>
+ 
+ <div id = "b" class = "patch-container">
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="1">2.1 button</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="2">2.2 button</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="3">2.3 button</div>
+ 
+     <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
+ 
+     <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
+ 
+     <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
+ 
+ </div>
+ 
+````
+ 
+ One nested in the other
+````
+ <div id = "a" class = "patch-container">
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="1">1.1 button</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="2">1.2 button (Nested)</div>
+ 
+     <div class="navfield patch-item patch-button" data-patch-panel="3">1.3 button</div>
+ 
+    
+     <div class="patch-panel" data-patch-panel="1">1.1 panel</div>
+ 
+     <div class="patch-panel" data-patch-panel="2">
+ 
+         1.2 panel
+ 
+         <div id = "b" class = "patch-container">
+ 
+             <div class="navfield patch-item patch-button" data-patch-panel="1">2.1 button</div>
+
+             <div class="navfield patch-item patch-button" data-patch-panel="2">2.2 button</div>
+ 
+             <div class="navfield patch-item patch-button" data-patch-panel="3">2.3 button</div>
+ 
+            
+             <div class="patch-panel" data-patch-panel="1">2.1 panel</div>
+ 
+             <div class="patch-panel" data-patch-panel="2">2.2 panel</div>
+ 
+             <div class="patch-panel" data-patch-panel="3">2.3 panel</div>
+ 
+         </div>
+ 
+     </div>
+ 
+     <div class="patch-panel" data-patch-panel="3">1.3 panel</div>
+ 
+ </div>
+ 
+````
 
 #### Package Managers
 
@@ -48,6 +130,8 @@ $(element).patchpanel({
   display: none;
 }
 ````
+ 
+ 
 
 #### Future Updates
 
